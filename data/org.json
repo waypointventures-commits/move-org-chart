@@ -1,0 +1,428 @@
+{
+  "updated": "1 Oct 2026",
+  "levels": [
+    {
+      "id": "L1",
+      "name": "Coach",
+      "who": [
+        "Trainers (Junior, Senior, Lead)"
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "Specialist",
+      "who": [
+        "Branch Managers",
+        "Edu-trainers",
+        "Investor Relations",
+        "Talent Acquisition Lead",
+        "Marketing Manager",
+        "Creative Lead",
+        "Ads Executor",
+        "People Operations",
+        "Finance Assistant"
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "Leadership",
+      "who": [
+        "Education Council",
+        "Procurement & Site Setup Lead",
+        "Finance Manager",
+        "Product Engineers",
+        "Strategy Office",
+        "Branch and Edu Pioneers (a status, not a seat)"
+      ]
+    },
+    {
+      "id": "L4",
+      "name": "Builder",
+      "who": [
+        "CEO",
+        "COO",
+        "Heads of House",
+        "Country Managers"
+      ]
+    }
+  ],
+  "hq": {
+    "id": "ceo",
+    "role": "Chief Executive Officer",
+    "holder": "Samuel Tan",
+    "level": "L4",
+    "kind": "exec",
+    "layout": "h",
+    "children": [
+      {
+        "id": "coo",
+        "role": "Chief Operating Officer",
+        "holder": "Way Sern",
+        "level": "L4",
+        "kind": "exec",
+        "reportsTo": "CEO",
+        "about": "Every house reports to the COO.",
+        "layout": "h",
+        "children": [
+          {
+            "id": "mh",
+            "role": "Head of Management",
+            "holder": "David",
+            "title": "General Manager",
+            "house": "Management House",
+            "level": "L4",
+            "kind": "head",
+            "reportsTo": "COO",
+            "about": "Runs the branches: Country Managers, Branch Managers and Trainers. Owns the client journey from enrolment to renewal.",
+            "children": [
+              {
+                "id": "cm",
+                "role": "Country Managers",
+                "holder": "One per country",
+                "level": "L4",
+                "levelNote": "parked between L3 and L4",
+                "reportsTo": "Head of Management",
+                "about": "One Country Manager per country. The Malaysia seat is the senior-most across Singapore, Malaysia and Thailand.",
+                "seats": [
+                  {
+                    "label": "Malaysia",
+                    "holder": "Matt",
+                    "note": "Senior-most Country Manager"
+                  },
+                  {
+                    "label": "Singapore",
+                    "holder": null
+                  },
+                  {
+                    "label": "Thailand",
+                    "holder": null
+                  }
+                ],
+                "children": [
+                  {
+                    "id": "specops",
+                    "role": "SpecOps",
+                    "holder": "Ad hoc",
+                    "kind": "adhoc",
+                    "reportsTo": "Country Managers",
+                    "about": "Ad hoc operations support, formed when needed."
+                  },
+                  {
+                    "id": "bm",
+                    "role": "Branch Managers",
+                    "holder": "One per branch",
+                    "level": "L2",
+                    "reportsTo": "Country Manager of their country",
+                    "about": "Runs the branch and directs the whole branch team on branch matters, including the Edu-trainer based there. A Branch Manager who earns Branch Pioneer status opens new branches.",
+                    "children": [
+                      {
+                        "id": "trainers",
+                        "role": "Trainers",
+                        "holder": "Per branch",
+                        "sub": "Junior → Senior → Lead",
+                        "level": "L1",
+                        "reportsTo": "Branch Manager",
+                        "about": "Coaches clients. Three tiers: Junior, Senior and Lead."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "eh",
+            "role": "Head of Expansion",
+            "holder": "CJ",
+            "title": "Expansion Director",
+            "house": "Expansion House",
+            "level": "L4",
+            "kind": "head",
+            "reportsTo": "COO",
+            "tags": [
+              {
+                "text": "also leads avantej",
+                "kind": "hat"
+              }
+            ],
+            "about": "Opens new branches: site search, investors, procurement and setup. A Branch Pioneer reports here from the site decision to opening day, then returns to Management House as the new branch's manager. Management co-signs every new site from day one.",
+            "children": [
+              {
+                "id": "procurement",
+                "role": "Procurement & Site Setup Lead",
+                "holder": "Jack",
+                "level": "L3",
+                "reportsTo": "Head of Expansion",
+                "about": "Buys for the branches and sets up new sites once the tenancy is signed."
+              },
+              {
+                "id": "ir",
+                "role": "Investor Relations",
+                "holder": "Danish",
+                "level": "L2",
+                "reportsTo": "Head of Expansion",
+                "about": "Investors and co-investors for new branches."
+              }
+            ]
+          },
+          {
+            "id": "tdh",
+            "role": "Head of Technology & Data",
+            "holder": "Elvis Lee",
+            "title": "Chief Technology Officer",
+            "house": "Technology & Data House",
+            "level": "L4",
+            "kind": "head",
+            "reportsTo": "COO",
+            "about": "Systems, data and the Client Hub.",
+            "children": [
+              {
+                "id": "engineers",
+                "role": "Product Engineers",
+                "holder": "Ming · Rushdan",
+                "level": "L3",
+                "reportsTo": "Head of Technology & Data",
+                "about": "Build and run MOVE's software."
+              }
+            ]
+          },
+          {
+            "id": "mkh",
+            "role": "Head of Marketing",
+            "holder": "Hitomi",
+            "title": "Marketing Director",
+            "house": "Marketing House",
+            "level": "L4",
+            "kind": "head",
+            "reportsTo": "COO",
+            "about": "Brand, campaigns and enquiries up to the point a lead is assigned to a branch.",
+            "children": [
+              {
+                "id": "mm",
+                "role": "Marketing Manager",
+                "holder": "Clarrine",
+                "level": "L2",
+                "reportsTo": "Head of Marketing"
+              },
+              {
+                "id": "creative",
+                "role": "Creative Lead",
+                "holder": "Emily",
+                "level": "L2",
+                "reportsTo": "Head of Marketing"
+              },
+              {
+                "id": "ads",
+                "role": "Ads Executor",
+                "holder": "Jon",
+                "level": "L2",
+                "reportsTo": "Head of Marketing"
+              }
+            ]
+          },
+          {
+            "id": "fh",
+            "role": "Head of Finance",
+            "holder": "Jason",
+            "title": "Finance Director",
+            "house": "Finance House",
+            "level": "L4",
+            "kind": "head",
+            "reportsTo": "COO",
+            "about": "Accounts, payments, payroll and reporting.",
+            "children": [
+              {
+                "id": "fm",
+                "role": "Finance Manager",
+                "holder": "Jireh",
+                "level": "L3",
+                "reportsTo": "Head of Finance",
+                "children": [
+                  {
+                    "id": "fa",
+                    "role": "Finance Assistant",
+                    "holder": "Jane",
+                    "level": "L2",
+                    "reportsTo": "Finance Manager"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pch",
+            "role": "Head of People & Culture",
+            "holder": "Jamie",
+            "title": "People & Culture Director",
+            "house": "People & Culture House",
+            "level": "L4",
+            "kind": "head",
+            "reportsTo": "COO",
+            "about": "Hiring, contracts, renewals and the people side of the business.",
+            "children": [
+              {
+                "id": "peopleops",
+                "role": "People Operations",
+                "holder": "Gina",
+                "sub": "Interviews · contracts · renewals · terminations",
+                "level": "L2",
+                "reportsTo": "Head of People & Culture",
+                "about": "Interviews candidates and owns contracts, renewals and terminations."
+              },
+              {
+                "id": "talent",
+                "role": "Talent Acquisition Lead",
+                "holder": "Jonathan",
+                "level": "L2",
+                "reportsTo": "Head of People & Culture",
+                "tags": [
+                  {
+                    "text": "mentor: CJ",
+                    "kind": "hat"
+                  }
+                ],
+                "about": "Finds coaches and managers: sourcing, partnerships and the hiring funnel. Expansion raises the headcount need for each new branch; People & Culture fills it."
+              }
+            ]
+          },
+          {
+            "id": "edh",
+            "role": "Head of Education",
+            "holder": "Education Council",
+            "sub": "Headed by Yan Sheng",
+            "house": "Education House",
+            "level": "L3",
+            "kind": "head",
+            "reportsTo": "COO",
+            "tags": [
+              {
+                "text": "advisors: May Ooi · Peng Hooi",
+                "kind": "hat"
+              }
+            ],
+            "about": "Sets the coaching standard: how MOVE coaches, how coaches are educated, and who is certified. Edu-trainers report here for their education work.",
+            "children": [
+              {
+                "id": "et",
+                "role": "Edu-trainers",
+                "holder": "Per branch",
+                "sub": "Based in branches",
+                "level": "L2",
+                "reportsTo": "Education Council",
+                "tags": [
+                  {
+                    "text": "branch matters & coaching KPIs: Branch Manager",
+                    "kind": "func"
+                  }
+                ],
+                "about": "Two hats. For educating coaches, their KPIs and their development, they report to the Education Council. For coaching clients and day-to-day branch matters, the Branch Manager directs them like any team member."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "aside": [
+      {
+        "id": "strategy",
+        "role": "Strategy Office",
+        "holder": "Felicia",
+        "level": "L3",
+        "levelNote": "provisional",
+        "reportsTo": "CEO",
+        "about": "Strategy work for the CEO. Sits under the CEO and is not a house."
+      }
+    ]
+  },
+  "entity": {
+    "id": "avantej",
+    "role": "avantej",
+    "holder": "CJ",
+    "kind": "entity",
+    "sub": "Separate entity, outside the L1 to L4 ladder",
+    "tags": [
+      {
+        "text": "also Head of Expansion",
+        "kind": "hat"
+      }
+    ],
+    "about": "A separate company led by CJ. Not a MOVE reporting line."
+  },
+  "branch": {
+    "intro": "Each branch is its own unit. Lines run upward: the Branch Manager to their Country Manager, the Edu-trainer to the Education Council for education work. Inside the branch, the Branch Manager directs everyone on branch matters.",
+    "note": "One page per branch will follow once the branch list is confirmed. This page shows how every branch is organised.",
+    "tree": {
+      "id": "b-hq",
+      "role": "HQ",
+      "holder": "See the HQ chart",
+      "kind": "ref",
+      "layout": "h",
+      "children": [
+        {
+          "id": "b-cm",
+          "role": "Country Manager",
+          "holder": "Management House",
+          "kind": "ref",
+          "children": [
+            {
+              "id": "b-bm",
+              "role": "Branch Manager",
+              "holder": "One per branch",
+              "level": "L2",
+              "reportsTo": "Country Manager",
+              "tags": [
+                {
+                  "text": "Branch Pioneer status, if held",
+                  "kind": "hat"
+                }
+              ],
+              "about": "Directs the whole branch team on branch matters, including the Edu-trainer.",
+              "children": [
+                {
+                  "id": "b-lead",
+                  "role": "Lead Trainers",
+                  "level": "L1",
+                  "reportsTo": "Branch Manager"
+                },
+                {
+                  "id": "b-senior",
+                  "role": "Senior Trainers",
+                  "level": "L1",
+                  "reportsTo": "Branch Manager"
+                },
+                {
+                  "id": "b-junior",
+                  "role": "Junior Trainers",
+                  "level": "L1",
+                  "reportsTo": "Branch Manager"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "b-edu",
+          "role": "Education Council",
+          "holder": "Education House",
+          "kind": "ref",
+          "children": [
+            {
+              "id": "b-et",
+              "role": "Edu-trainer",
+              "holder": "Based in the branch",
+              "level": "L2",
+              "reportsTo": "Education Council",
+              "tags": [
+                {
+                  "text": "branch matters & coaching KPIs: Branch Manager",
+                  "kind": "func"
+                }
+              ],
+              "about": "Educates the branch's coaches. Reports upward to the Education Council for that work, and follows the Branch Manager on branch matters like any team member."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
