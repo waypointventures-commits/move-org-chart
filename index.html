@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261001h">
+<link rel="stylesheet" href="styles.css?v=20261001j">
 <script>
   try { var t = localStorage.getItem('move-theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -17,20 +17,20 @@
 <body>
 
 <header class="hero">
-  <div class="hero-inner">
+  <div class="hero-inner wrap">
     <div>
       <div class="brand">
         <img class="logo" src="assets/logo-white.png" alt="MOVE Private Fitness">
         <span class="brand-tag">Org chart</span>
       </div>
       <h1>Who does what, and who reports to whom</h1>
-      <p class="lede">HQ is one unit and every branch is its own. Tap any box for the seat's responsibilities, or search a name to light up their reporting line.</p>
+      <p class="lede">HQ is one unit and every branch is its own. Open any box for what the seat owns, or search a name to trace the reporting line.</p>
     </div>
-    <div class="stats" id="stats"></div>
+    <p class="stats" id="stats"></p>
   </div>
 </header>
 
-<nav class="toolbar" aria-label="Chart controls">
+<nav class="toolbar wrap" aria-label="Chart controls">
   <div class="views" role="tablist">
     <button class="view-btn is-active" role="tab" data-view="hq" aria-selected="true">HQ</button>
     <button class="view-btn" role="tab" data-view="branch" aria-selected="false">A branch</button>
@@ -50,7 +50,7 @@
   </div>
 </nav>
 
-<section class="levels" id="levels" hidden>
+<section class="levels wrap" id="levels" hidden>
   <div class="levels-head">
     <h2>Growth Map levels</h2>
     <span class="muted">Shared-goal rungs: Junior → Senior → Lead → L2 → L3 → L4</span>
@@ -58,7 +58,7 @@
   <div class="levels-grid" id="levels-grid"></div>
 </section>
 
-<main class="stage">
+<main class="stage wrap">
   <p class="hint" id="hint">Tap a box for details. Drag to pan, use the buttons to zoom, or hover a box to trace its line.</p>
   <div class="view" id="view-hq">
     <div class="canvas" id="canvas-hq">
@@ -94,11 +94,11 @@
 </aside>
 <div class="scrim" id="scrim" hidden></div>
 
-<footer class="foot">
+<footer class="foot wrap">
   <span>MOVE® Private Fitness · internal · updated <span id="updated-foot"></span></span>
   <span>Lines are reporting lines. A dashed label is a second authority, not a second boss.</span>
 </footer>
 
-<script src="app.js?v=20261001h"></script>
+<script src="app.js?v=20261001j"></script>
 </body>
 </html>

@@ -21,7 +21,8 @@
   const BUILDING = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v15M14 9h5a1 1 0 0 1 1 1v10M3 20h18M8 8h2M8 12h2M8 16h2"/></svg>';
 
   // One accent per house; everything under a house inherits it.
-  const ACCENT = { mh: '#11726B', eh: '#B8860B', tdh: '#3E6D9C', mkh: '#C2563C', fh: '#6E7F2B', pch: '#7B4F8E', edh: '#2E8B6A', strategy: '#4F5D75', avantej: '#11726B' };
+  // Single brand accent; hierarchy is shown by weight, not colour.
+  const ACCENT = {};
 
   const state = { data: null, byId: new Map(), parent: new Map(), view: 'hq', zoom: { hq: 1, branch: 1 }, pan: { hq: { x: 0, y: 0 }, branch: { x: 0, y: 0 } } };
 
@@ -179,8 +180,9 @@
     };
     walk(data.hq);
     const stats = $('#stats');
-    [[houses, 'Houses'], [seats, 'Seats'], [3, 'Countries'], [open, 'Open seats']].forEach(([v, k]) => {
-      stats.append(el('div', { class: 'stat' }, [el('b', { text: String(v) }), el('span', { text: k })]));
+    [[houses, 'houses'], [seats, 'seats'], [3, 'countries'], [open, 'open seats']].forEach(([v, k], i) => {
+      if (i) stats.append(el('span', { class: 'dot', text: '·' }));
+      stats.append(el('span', {}, [el('b', { text: String(v) }), document.createTextNode(` ${k}`)]));
     });
   }
   function renderLevels(levels) {
@@ -201,10 +203,8 @@
     const node = state.byId.get(id);
     if (!node) return;
     const parent = state.parent.get(id);
-    const accent = accentOf(id) || '#11726B';
     const wrap = $('#panel-content');
     wrap.innerHTML = '';
-    wrap.setAttribute('style', `--accent:${accent}`);
 
     const head = el('div', { class: 'panel-head' });
     const path = chain(id);
@@ -272,7 +272,7 @@
       body.append(el('h3', { text: 'Team' }));
       const ul = el('ul', { class: 'team' });
       team.forEach((c) => {
-        const b = el('button', { type: 'button', style: `--accent:${accentOf(c.id) || accent}`, onclick: () => openPanel(c.id) });
+        const b = el('button', { type: 'button', onclick: () => openPanel(c.id) });
         b.append(avatar(c));
         const tx = el('span');
         tx.append(document.createTextNode(c.role));
