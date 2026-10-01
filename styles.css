@@ -236,6 +236,7 @@ ul.h > li:only-child::before, ul.h > li:only-child::after { border-radius: 0; }
   border-top: 2px solid var(--line);
 }
 ul.depts > li > .node { width: 100%; }
+#view-branch ul.depts > li { width: 300px; padding-left: 16px; padding-right: 16px; }
 
 ul.v {
   position: relative;

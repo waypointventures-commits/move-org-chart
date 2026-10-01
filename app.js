@@ -75,7 +75,8 @@
     const hasAside = !!(node.aside && node.aside.length);
     if (node.children && node.children.length) {
       const layout = node.layout === 'h' ? 'h' : 'v';
-      const ul = el('ul', { class: `${layout === 'h' ? (depth === 1 ? 'h depts' : 'h') : 'v'}${hasAside ? ' tall' : ''}` });
+      const cols = layout === 'h' && (depth === 1 || node.rail === 'cols');
+      const ul = el('ul', { class: `${layout === 'h' ? (cols ? 'h depts' : 'h') : 'v'}${hasAside ? ' tall' : ''}` });
       node.children.forEach((c) => ul.append(renderTree(c, depth + 1)));
       li.append(ul);
     }
