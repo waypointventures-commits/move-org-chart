@@ -183,6 +183,13 @@
 
     if (node.about) body.append(el('p', { class: 'about', text: node.about }));
 
+    if (node.duties && node.duties.length) {
+      body.append(el('p', { class: 'eyebrow', text: 'What this seat owns' }));
+      const ul = el('ul', { class: 'duties' });
+      node.duties.forEach((t) => ul.append(el('li', { text: t })));
+      body.append(ul);
+    }
+
     const team = [].concat(node.aside || [], node.children || []);
     if (team.length) {
       body.append(el('p', { class: 'eyebrow', text: 'Team' }));
@@ -224,6 +231,7 @@
     const term = q.trim().toLowerCase();
     root.classList.toggle('searching', !!term);
     root.querySelectorAll('.node').forEach((n) => n.classList.remove('hit', 'path'));
+    root.querySelectorAll('.on-path, .on-route, .rl, .rr').forEach((n) => n.classList.remove('on-path', 'on-route', 'rl', 'rr'));
     $('#empty').hidden = true;
     if (!term) return;
     let hits = 0;
@@ -234,11 +242,52 @@
       if (hay.includes(term)) {
         hits++;
         n.classList.add('hit');
-        const li = n.closest('li');
-        ancestors(li).forEach((a) => { toggle(a, false); a.querySelector(':scope > .node').classList.add('path'); });
+        lightRoute(n);
       }
     });
     $('#empty').hidden = hits > 0;
+  }
+
+  // Light up every connector from a matched box to the top of the chart.
+  function lightRoute(nodeEl) {
+    const asideWrap = nodeEl.closest('.aside');
+    if (asideWrap) {
+      asideWrap.classList.add('on-path');
+      const hostLi = asideWrap.closest('li');
+      hostLi.querySelector(':scope > ul')?.classList.add('on-route');
+      climb(hostLi, true);
+      return;
+    }
+    climb(nodeEl.closest('li'), false);
+  }
+
+  function climb(li, isHostOfHit) {
+    let cur = li;
+    while (cur) {
+      cur.classList.add('on-path');
+      if (cur !== li || isHostOfHit) cur.querySelector(':scope > .node')?.classList.add('path');
+      const ul = cur.parentElement;
+      if (!ul || !ul.classList.contains('h') && !ul.classList.contains('v')) break;
+      ul.classList.add('on-route');
+      const kids = Array.from(ul.children);
+      const i = kids.indexOf(cur);
+      if (ul.classList.contains('v')) {
+        kids.slice(0, i).forEach((k) => k.classList.add('rl'));
+      } else {
+        const n = kids.length, mid = 0.5, c = (i + 0.5) / n;
+        const lo = Math.min(c, mid), hi = Math.max(c, mid);
+        kids.forEach((k, j) => {
+          if (j === i) return;
+          const l = j / n, m = (j + 0.5) / n, r = (j + 1) / n;
+          if (l >= lo - 1e-6 && m <= hi + 1e-6) k.classList.add('rl');
+          if (m >= lo - 1e-6 && r <= hi + 1e-6) k.classList.add('rr');
+        });
+      }
+      const parentLi = ul.closest('li');
+      if (!parentLi) break;
+      parentLi.classList.remove('collapsed');
+      cur = parentLi;
+    }
   }
 
   // ---------- views ----------

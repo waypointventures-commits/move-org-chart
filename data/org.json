@@ -105,7 +105,10 @@
                     "holder": "Ad hoc",
                     "kind": "adhoc",
                     "reportsTo": "Country Managers",
-                    "about": "Ad hoc operations support, formed when needed."
+                    "about": "Ad hoc operations support, formed when needed.",
+                    "duties": [
+                      "Ad hoc operations support, formed by the Country Managers when a situation needs it."
+                    ]
                   },
                   {
                     "id": "bm",
@@ -122,12 +125,37 @@
                         "sub": "Junior → Senior → Lead",
                         "level": "L1",
                         "reportsTo": "Branch Manager",
-                        "about": "Coaches clients. Three tiers: Junior, Senior and Lead."
+                        "about": "Coaches clients. Three tiers: Junior, Senior and Lead.",
+                        "duties": [
+                          "Coach clients: sessions, onboarding, renewals and referrals in the branch.",
+                          "Enrolment and doing the job to standard, as trained by Management.",
+                          "Coaching method and continuous learning come from Education through the branch's Edu-trainer.",
+                          "Three tiers: Junior, Senior and Lead."
+                        ]
                       }
+                    ],
+                    "duties": [
+                      "Runs the branch: the team, the schedule, conduct, and the numbers such as sessions, conversion and renewals.",
+                      "Decides who is hired for the branch after the manager interview. Education's coaching proficiency test is a pass or fail gate.",
+                      "Directs the whole branch team on branch matters, including the Edu-trainer based there.",
+                      "A manager who earns Branch Pioneer status opens a new branch, reporting to Expansion until opening day, and hands the old branch to a ready successor."
                     ]
                   }
+                ],
+                "duties": [
+                  "Runs the branches in their country through the Branch Managers. Owns conversion, renewal and branch performance there.",
+                  "Co-signs new sites in their country with Expansion, because Management owns the profit afterwards.",
+                  "Settles a disagreement between a Branch Manager and Education together with the Education Council.",
+                  "The Malaysia seat is the senior-most Country Manager. David holds the Singapore and Thailand parts until those seats are filled."
                 ]
               }
+            ],
+            "duties": [
+              "Turns leads into clients once a lead is assigned to a branch: first contact, consultation, follow-up, registration and enrolment.",
+              "Looks after clients: onboarding, sessions, renewals, referrals and the client who stops coming. Owns the conversion and renewal numbers.",
+              "Branch performance after opening day, the Branch Managers and their teams, and branch costs.",
+              "Grows managers: names Managers-in-Training, trains them and decides who is ready for which branch.",
+              "Co-signs every new site with Expansion. Holds the Country Manager's part for Singapore and Thailand while those seats are open."
             ]
           },
           {
@@ -153,7 +181,12 @@
                 "holder": "Jack",
                 "level": "L3",
                 "reportsTo": "Head of Expansion",
-                "about": "Buys for the branches and sets up new sites once the tenancy is signed."
+                "about": "Buys for the branches and sets up new sites once the tenancy is signed.",
+                "duties": [
+                  "Buys equipment and supplies for all branches, to the approved process and limits.",
+                  "Sets up new sites once the tenancy is signed: fit-out, procurement and setup to the Studio Setup Framework.",
+                  "Covers Malaysia, Singapore and Thailand."
+                ]
               },
               {
                 "id": "ir",
@@ -161,8 +194,18 @@
                 "holder": "Danish",
                 "level": "L2",
                 "reportsTo": "Head of Expansion",
-                "about": "Investors and co-investors for new branches."
+                "about": "Investors and co-investors for new branches.",
+                "duties": [
+                  "Raises funds and brings investors and co-investors on board for new branches, with Finance approving the capital.",
+                  "Presents the investor reporting and distributions that Finance prepares, for the life of each branch."
+                ]
               }
+            ],
+            "duties": [
+              "Opens new branches: funding, the site, tenancy, fit-out, procurement, setup and the founding team in place by opening day.",
+              "Recommends each site; the General Manager or Country Manager co-signs. Expansion steps out on opening day.",
+              "Raises the headcount need for each new branch; People & Culture fills it.",
+              "Presents to investors, with Finance supplying the numbers. Mentors the Talent Acquisition Lead."
             ]
           },
           {
@@ -182,8 +225,16 @@
                 "holder": "Ming · Rushdan",
                 "level": "L3",
                 "reportsTo": "Head of Technology & Data",
-                "about": "Build and run MOVE's software."
+                "about": "Build and run MOVE's software.",
+                "duties": [
+                  "Build and run MOVE's software, including the Client Hub."
+                ]
               }
+            ],
+            "duties": [
+              "Builds and runs MOVE's systems: the Client Hub, forms, lead stages and the checks in the system.",
+              "Owns data, security and privacy enforcement.",
+              "Fixes the system when the system is the problem. Fixing how people use it stays with Management."
             ]
           },
           {
@@ -202,22 +253,37 @@
                 "role": "Marketing Manager",
                 "holder": "Clarrine",
                 "level": "L2",
-                "reportsTo": "Head of Marketing"
+                "reportsTo": "Head of Marketing",
+                "duties": [
+                  "Runs campaigns and channels day to day under the Head of Marketing."
+                ]
               },
               {
                 "id": "creative",
                 "role": "Creative Lead",
                 "holder": "Emily",
                 "level": "L2",
-                "reportsTo": "Head of Marketing"
+                "reportsTo": "Head of Marketing",
+                "duties": [
+                  "Creative and brand assets: design, content and the templates other houses use."
+                ]
               },
               {
                 "id": "ads",
                 "role": "Ads Executor",
                 "holder": "Jon",
                 "level": "L2",
-                "reportsTo": "Head of Marketing"
+                "reportsTo": "Head of Marketing",
+                "duties": [
+                  "Runs paid advertising and reports lead numbers and cost."
+                ]
               }
+            ],
+            "duties": [
+              "Gets leads in: who we target, where, the ads, the creative, the channels, organic content and the website.",
+              "Owns the brand. Every message to a lead or client uses approved templates and brand assets.",
+              "Takes the first look at business enquiries and partnership pitches; keeps brand and media partnerships and passes the rest to the right house.",
+              "Measured on the number, cost and quality of leads. Hands over when a lead is assigned to a branch and coach."
             ]
           },
           {
@@ -243,10 +309,21 @@
                     "role": "Finance Assistant",
                     "holder": "Jane",
                     "level": "L2",
-                    "reportsTo": "Finance Manager"
+                    "reportsTo": "Finance Manager",
+                    "duties": [
+                      "Supports the Finance Manager with bookkeeping, claims and records."
+                    ]
                   }
+                ],
+                "duties": [
+                  "Runs accounting, claims and payments day to day under the Head of Finance."
                 ]
               }
+            ],
+            "duties": [
+              "Budgeting, accounting, claims, payroll and payments.",
+              "Approves the capital for a new branch, supplies the numbers for investor reporting and pays distributions.",
+              "Second pair of eyes on contracts, with the CEO."
             ]
           },
           {
@@ -264,10 +341,14 @@
                 "id": "peopleops",
                 "role": "People Operations",
                 "holder": "Gina",
-                "sub": "Interviews · contracts · renewals · terminations",
+                "sub": "Contracts · renewals · terminations · records",
                 "level": "L2",
                 "reportsTo": "Head of People & Culture",
-                "about": "Interviews candidates and owns contracts, renewals and terminations."
+                "about": "Owns the employment record: offer, contract, renewals and terminations. The Branch Manager decides who is hired.",
+                "duties": [
+                  "Offer, contract, records, renewals and terminations for every team member.",
+                  "Issues contracts drafted through the contract route, collects signatures and files them."
+                ]
               },
               {
                 "id": "talent",
@@ -281,8 +362,18 @@
                     "kind": "hat"
                   }
                 ],
-                "about": "Finds coaches and managers: sourcing, partnerships and the hiring funnel. Expansion raises the headcount need for each new branch; People & Culture fills it."
+                "about": "Finds coaches and managers: sourcing, partnerships and the hiring funnel. Expansion raises the headcount need for each new branch; People & Culture fills it.",
+                "duties": [
+                  "Finds candidates: campaigns, partnerships with universities, sports clubs and fitness communities, screening and the shortlist.",
+                  "Runs the hiring funnel: candidate database and application-to-hire tracking.",
+                  "Fills the headcount that Management and Expansion raise."
+                ]
               }
+            ],
+            "duties": [
+              "Recruitment from the first ad to the signed contract. Management and Expansion say how many coaches they need, where and by when.",
+              "Contracts, renewals, terminations and the employment record. Confirms every offer sits within the agreed headcount and pay band.",
+              "Runs the leadership programme both ladders go through, tracks progression at every tier, the 90-day check after each move, and the yearly count of managers and Edu-trainers needed."
             ]
           },
           {
@@ -315,10 +406,27 @@
                     "kind": "func"
                   }
                 ],
-                "about": "Two hats. For educating coaches, their KPIs and their development, they report to the Education Council. For coaching clients and day-to-day branch matters, the Branch Manager directs them like any team member."
+                "about": "Two hats. For educating coaches, their KPIs and their development, they report to the Education Council. For coaching clients and day-to-day branch matters, the Branch Manager directs them like any team member.",
+                "duties": [
+                  "Educates the branch's coaches to Education's standard and runs the coaching proficiency test for candidates.",
+                  "Reports to the Education Council for that work, the education numbers and their own development.",
+                  "As a trainer, coaches clients and follows the Branch Manager on branch matters like any team member.",
+                  "Review in two parts, one from each side."
+                ]
               }
+            ],
+            "duties": [
+              "Sets the coaching standard: the method, the syllabus and the format.",
+              "Educates coaches and certifies them. The coaching proficiency test is Education's pass or fail gate in hiring.",
+              "Picks coaches for the Education track, develops and qualifies Edu-trainers, decides who is ready, and assigns one to each new branch.",
+              "Consulted on conversion and renewal and sees the numbers. Not part of enrolment."
             ]
           }
+        ],
+        "duties": [
+          "Every house reports here. Owns the operating model: who owns what, the handover points between houses and the decision rights.",
+          "Every contract comes here first and is drafted from the current template, with the CEO or Head of Finance as a second pair of eyes.",
+          "Settles disagreements between houses when the heads cannot."
         ]
       }
     ],
@@ -382,20 +490,41 @@
                   "id": "b-lead",
                   "role": "Lead Trainers",
                   "level": "L1",
-                  "reportsTo": "Branch Manager"
+                  "reportsTo": "Branch Manager",
+                  "duties": [
+                    "Coach clients: sessions, onboarding, renewals and referrals in the branch.",
+                    "Enrolment and doing the job to standard, as trained by Management.",
+                    "Coaching method and continuous learning come from Education through the branch's Edu-trainer."
+                  ]
                 },
                 {
                   "id": "b-senior",
                   "role": "Senior Trainers",
                   "level": "L1",
-                  "reportsTo": "Branch Manager"
+                  "reportsTo": "Branch Manager",
+                  "duties": [
+                    "Coach clients: sessions, onboarding, renewals and referrals in the branch.",
+                    "Enrolment and doing the job to standard, as trained by Management.",
+                    "Coaching method and continuous learning come from Education through the branch's Edu-trainer."
+                  ]
                 },
                 {
                   "id": "b-junior",
                   "role": "Junior Trainers",
                   "level": "L1",
-                  "reportsTo": "Branch Manager"
+                  "reportsTo": "Branch Manager",
+                  "duties": [
+                    "Coach clients: sessions, onboarding, renewals and referrals in the branch.",
+                    "Enrolment and doing the job to standard, as trained by Management.",
+                    "Coaching method and continuous learning come from Education through the branch's Edu-trainer."
+                  ]
                 }
+              ],
+              "duties": [
+                "Runs the branch: the team, the schedule, conduct, and the numbers such as sessions, conversion and renewals.",
+                "Decides who is hired for the branch after the manager interview. Education's coaching proficiency test is a pass or fail gate.",
+                "Directs the whole branch team on branch matters, including the Edu-trainer based there.",
+                "A manager who earns Branch Pioneer status opens a new branch, reporting to Expansion until opening day, and hands the old branch to a ready successor."
               ]
             }
           ]
@@ -418,7 +547,13 @@
                   "kind": "func"
                 }
               ],
-              "about": "Educates the branch's coaches. Reports upward to the Education Council for that work, and follows the Branch Manager on branch matters like any team member."
+              "about": "Educates the branch's coaches. Reports upward to the Education Council for that work, and follows the Branch Manager on branch matters like any team member.",
+              "duties": [
+                "Educates the branch's coaches to Education's standard and runs the coaching proficiency test for candidates.",
+                "Reports to the Education Council for that work, the education numbers and their own development.",
+                "As a trainer, coaches clients and follows the Branch Manager on branch matters like any team member.",
+                "Review in two parts, one from each side."
+              ]
             }
           ]
         }
