@@ -9,14 +9,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261001g">
+<link rel="stylesheet" href="styles.css?v=20261001h">
+<script>
+  try { var t = localStorage.getItem('move-theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
 </head>
 <body>
 
-<header class="bar">
-  <img class="logo" src="assets/logo-white.png" alt="MOVE Private Fitness">
-  <span class="bar-title">Org chart</span>
-  <span class="bar-meta">Updated <span id="updated"></span></span>
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="brand">
+        <img class="logo" src="assets/logo-white.png" alt="MOVE Private Fitness">
+        <span class="brand-tag">Org chart</span>
+      </div>
+      <h1>Who does what, and who reports to whom</h1>
+      <p class="lede">HQ is one unit and every branch is its own. Tap any box for the seat's responsibilities, or search a name to light up their reporting line.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
 </header>
 
 <nav class="toolbar" aria-label="Chart controls">
@@ -27,11 +38,15 @@
   <label class="search">
     <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <input id="search" type="search" placeholder="Find a person or role" autocomplete="off" aria-label="Find a person or role">
+    <kbd>/</kbd>
   </label>
   <div class="actions">
     <button class="btn" id="expand">Expand all</button>
     <button class="btn" id="collapse">Collapse all</button>
     <button class="btn" id="levels-toggle" aria-expanded="false" aria-controls="levels">Levels</button>
+    <button class="btn icon" id="theme" aria-label="Switch light or dark" title="Light or dark">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-.9-.1-1.3A6.5 6.5 0 0 1 11.3 3.1L12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -44,9 +59,16 @@
 </section>
 
 <main class="stage">
-  <p class="hint" id="hint">Tap a box for details. Use the chevron to fold a team away.</p>
+  <p class="hint" id="hint">Tap a box for details. Drag to pan, use the buttons to zoom, or hover a box to trace its line.</p>
   <div class="view" id="view-hq">
-    <div class="chart-wrap"><div class="tree-root" id="tree-hq"></div></div>
+    <div class="canvas" id="canvas-hq">
+      <div class="tree-root" id="tree-hq"></div>
+      <div class="zoom">
+        <button class="btn icon" data-zoom="out" aria-label="Zoom out"><svg viewBox="0 0 24 24"><path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+        <button class="btn icon" data-zoom="fit" aria-label="Fit to screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+        <button class="btn icon" data-zoom="in" aria-label="Zoom in"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
     <div class="entity-wrap" id="entity"></div>
   </div>
   <div class="view" id="view-branch" hidden>
@@ -54,14 +76,21 @@
       <p id="branch-intro"></p>
       <p class="muted" id="branch-note"></p>
     </div>
-    <div class="chart-wrap"><div class="tree-root" id="tree-branch"></div></div>
+    <div class="canvas" id="canvas-branch">
+      <div class="tree-root" id="tree-branch"></div>
+      <div class="zoom">
+        <button class="btn icon" data-zoom="out" aria-label="Zoom out"><svg viewBox="0 0 24 24"><path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+        <button class="btn icon" data-zoom="fit" aria-label="Fit to screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+        <button class="btn icon" data-zoom="in" aria-label="Zoom in"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
   </div>
   <p class="empty" id="empty" hidden>No one matches that. Try a first name or a role.</p>
 </main>
 
 <aside class="panel" id="panel" aria-hidden="true" aria-labelledby="panel-role">
   <button class="panel-close" id="panel-close" aria-label="Close">×</button>
-  <div class="panel-body" id="panel-body"></div>
+  <div id="panel-content"></div>
 </aside>
 <div class="scrim" id="scrim" hidden></div>
 
@@ -70,6 +99,6 @@
   <span>Lines are reporting lines. A dashed label is a second authority, not a second boss.</span>
 </footer>
 
-<script src="app.js?v=20261001g"></script>
+<script src="app.js?v=20261001h"></script>
 </body>
 </html>
