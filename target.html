@@ -592,14 +592,14 @@
    {
     "id": "cm_sg",
     "role": "Country Manager, Singapore",
-    "holder": "Open seat; Danish interim",
+    "holder": "Danish; passing to Shane once his Singapore pass is approved",
     "house": "mgmt",
     "layer": "country",
     "level": "L4",
     "reportsTo": "Head of Management",
     "status": "open",
     "today": {},
-    "about": "Runs the Singapore branches through the Branch Managers once filled, and owns and answers new enquiries for Singapore. Until then Danish holds it."
+    "about": "Runs the Singapore branches through the Branch Managers, and owns and answers new enquiries for Singapore. Danish holds the seat today and hands it to Shane once Shane's Singapore pass is approved and Branch Managers are in place for the branches he leaves."
    },
    {
     "id": "cm_th",
@@ -707,7 +707,7 @@
     "reportsTo": "Head of Expansion",
     "status": "current",
     "today": {},
-    "about": "Site scouting support, fit-out, procurement and setup for every opening, in every country, from HQ. Runs the tenancy process for each site: negotiates the terms with the landlord, puts the commitment to Finance for its check under the Approval Limits Policy, and arranges the signature by the entity's authorised signatory, who is a director. The appointed Branch Manager walks the unit and never signs. Country setup people sit under this seat once a country has openings dated.",
+    "about": "Site scouting support, fit-out, procurement and setup for every opening, in every country, from HQ. Runs the tenancy process for each site: negotiates the terms with the landlord, puts the commitment to Finance for its check under the Approval Limits Policy, and arranges the signature by the entity's authorised signatory, who is a director. The appointed Branch Manager walks the unit and never signs. Two seats can grow under it: a Procurement Executive at HQ, who buys for all three countries, and Country Setup people on the ground once a country has openings dated. The lead then runs site setup and keeps procurement under one roof.",
     "flows": [
      "opening"
     ]
@@ -740,6 +740,19 @@
     "today": null,
     "about": "The person on the ground who runs career sharing and physical seminars in a country and feeds its candidate pool. Reports to the Talent Acquisition Lead; the Country Manager directs them on local matters.",
     "trigger": "Openings dated in that country within the next two quarters, or language makes sourcing from HQ ineffective (Thailand). Until then, coach-contractors hosting career talks are the on-the-ground layer."
+   },
+   {
+    "id": "proc",
+    "role": "Procurement Executive",
+    "holder": "Open seat, when needed",
+    "house": "exp",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "Procurement & Site Setup Lead",
+    "status": "trigger",
+    "today": null,
+    "about": "Buys for every country from HQ: fit-out packages, equipment, branch consumables, apparel and the standing supplier contracts, so the lead can be on site for openings. Central because buying for all three countries together is what gets the price; a country only needs someone to receive goods and manage local contractors, which is the Country Setup seat.",
+    "trigger": "Procurement runs continuously outside openings (standing orders for twelve or more branches), or two openings run at once and the lead is on site for one of them."
    },
    {
     "id": "setup_c",
@@ -854,7 +867,7 @@
     "reportsTo": "COO",
     "status": "current",
     "today": {},
-    "about": "Sizes and approves the capital for every opening under the Approval Limits Policy; incorporates, receives funds, issues shares and keeps the investor register. Gives Investor Relations the instrument, the entity, the controls and the monthly numbers. Runs payroll in all three countries from the contract and role-change record People Operations keeps. Checks every tenancy commitment before a director signs.",
+    "about": "Sizes and approves the capital for every opening under the Approval Limits Policy; incorporates, receives funds, issues shares and keeps the investor register. Gives Investor Relations the instrument, the entity, the controls and the monthly numbers. Runs payroll in all three countries from the contract and role-change record People Operations keeps. Checks every tenancy commitment before a director signs. Finance stays one function with one ledger and one set of controls; the country layer is a Finance Executive per country for the local books, statutory filings and audit, added by trigger, with an outsourced local firm doing that work until then.",
     "flows": [
      "capital",
      "opening"
@@ -869,7 +882,8 @@
     "level": "L3",
     "reportsTo": "Head of Finance",
     "status": "current",
-    "today": {}
+    "today": {},
+    "about": "Runs the books for every entity from HQ: month-end close, management accounts, the investor numbers on the fixed date, receivables and payables. Line manager of the Finance Assistant and of any country Finance Executive."
    },
    {
     "id": "fa",
@@ -880,7 +894,34 @@
     "level": "L2",
     "reportsTo": "Finance Manager",
     "status": "current",
-    "today": {}
+    "today": {},
+    "about": "Records transactions for every entity from HQ. Stays central: one ledger and one set of controls for the group. The country layer, when it comes, is a Finance Executive in that country, not a split of this seat."
+   },
+   {
+    "id": "fin_sg",
+    "role": "Finance Executive, Singapore",
+    "holder": "Open seat, when needed",
+    "house": "fin",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "Finance Manager",
+    "status": "trigger",
+    "today": null,
+    "about": "The Singapore company's own books on the ground: local bank, GST and corporate tax filings, the statutory audit, supplier payments and branch cash. Works to the group's ledger and controls; payroll and the investor register stay central. Until the seat exists, an outsourced Singapore accounting firm does the statutory work under the Finance Manager.",
+    "trigger": "The Singapore company employs staff and runs three or more branches, or the statutory work outgrows what the outsourced firm handles. Expected during the 2027 openings."
+   },
+   {
+    "id": "fin_th",
+    "role": "Finance Executive, Thailand",
+    "holder": "Open seat, when needed",
+    "house": "fin",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "Finance Manager",
+    "status": "trigger",
+    "today": null,
+    "about": "The Thai entity's own books on the ground: local bank, VAT and tax filings, the statutory audit, supplier payments and branch cash, in Thai. Works to the group's ledger and controls.",
+    "trigger": "A Country Manager Thailand in seat and three or more Thai branches, or the statutory work outgrows the outsourced firm."
    },
    {
     "id": "hpc",
@@ -1000,14 +1041,14 @@
    {
     "id": "hoe_sg",
     "role": "Head of Education, Singapore",
-    "holder": "Andrew Tan, from January 2027",
+    "holder": "Andrew Tan, pending his Singapore pass",
     "house": "edu",
     "layer": "country",
     "level": "L3",
     "reportsTo": "Education Council (to be confirmed)",
     "status": "new",
     "today": null,
-    "about": "Mentors coaches and develops Edu-trainers in Singapore, with the Singapore Country Manager directing on local matters."
+    "about": "Mentors coaches and develops Edu-trainers in Singapore, with the Singapore Country Manager directing on local matters. Andrew starts once his Singapore pass (an intra-corporate transfer) is approved; the planned start is January 2027."
    },
    {
     "id": "hoe_th",
@@ -1356,6 +1397,9 @@
     "Gate-passed, signed hires for that country, by the request date.",
     "Candidate pool in that country ahead of the next opening."
    ],
+   "proc": [
+    "Every order delivered on the date the calendar or the branch needs it, at or below the agreed price; supplier contracts renewed before expiry."
+   ],
    "setup_c": [
     "Sites in that country ready on the calendar date and within budget."
    ],
@@ -1399,6 +1443,12 @@
    ],
    "fa": [
     "Transactions recorded completely and on time."
+   ],
+   "fin_sg": [
+    "The Singapore company's filings, audit and payments on time, with no findings; its books reconciled to the group ledger each month."
+   ],
+   "fin_th": [
+    "The Thai entity's filings, audit and payments on time, with no findings; its books reconciled to the group ledger each month."
    ],
    "hpc": [
     "Annual coach retention against the target, and hires still in place at six months.",
@@ -1721,7 +1771,7 @@
     if (key in REPORTS_TO_ID) return REPORTS_TO_ID[key];
     const byRole = SEATS.find(s => s.role === key); return byRole ? byRole.id : 'coo';
   }
-  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'five openings planned in 2027', agencies: 'bought, not hired' };
+  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'five openings planned in 2027', agencies: 'bought, not hired', fa: 'stays central; country books via a Finance Executive', proc: 'buys for all three countries' };
   let ocZoom = 1;
   function renderOrgChart() {
     const oc = document.getElementById('oc'); if (!oc) return;
@@ -1796,7 +1846,7 @@
     let b = `<h2>${f.title}</h2><p class="why">${f.why}</p>`;
     if (f.layers) {
       b += '<div class="layers">' + LAYERS.map(l => {
-        const ex = { global: 'CEO, COO, the seven heads of house.', extended: 'Business Analyst, Investor Relations, HR Manager, People Operations (all countries today), Talent Acquisition Lead, Procurement & Site Setup, Opening Project Lead, Product Engineers, the Marketing seats, Finance Manager, Enquiry and Events Operations.', country: 'Country Managers (the line in Management), country Heads of Education (Malaysia, Singapore, Thailand), People Operations per country when needed, country Talent Acquisition, Setup and Investor Relations, local agencies.', branch: 'Branch Managers (Branch Pioneer is a status one of them carries), Trainers, Edu-trainers.' }[l.id];
+        const ex = { global: 'CEO, COO, the seven heads of house.', extended: 'Business Analyst, Investor Relations, HR Manager, People Operations (all countries today), Talent Acquisition Lead, Procurement & Site Setup, Opening Project Lead, Product Engineers, the Marketing seats, Finance Manager, Enquiry and Events Operations.', country: 'Country Managers (the line in Management), country Heads of Education (Malaysia, Singapore, Thailand), and when needed: People Operations, Finance Executive, Talent Acquisition, Setup and Investor Relations per country, plus local agencies.', branch: 'Branch Managers (Branch Pioneer is a status one of them carries), Trainers, Edu-trainers.' }[l.id];
         return `<div class="lc"><b>${l.name}</b><small>${l.sub}</small><p>${ex}</p></div>`;
       }).join('') + '</div>';
     }
