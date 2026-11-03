@@ -506,7 +506,7 @@
      "layer": "extended",
      "reportsTo": "Head of Expansion"
     },
-    "about": "Owns the investor relationship for the life of every branch: finding, qualifying, pitching and closing investors for each opening, then the reporting, studio tours, investor events and any change of stake afterwards. A seat under the COO rather than part of Expansion or Finance, because Expansion's job ends on opening day and Finance's job is the numbers and the controls. It becomes a house only when it has three permanent people and its own budget line.",
+    "about": "Owns the investor relationship for the life of every branch: finding, qualifying, pitching and closing investors for each opening, then the reporting, studio tours, investor events and any change of stake afterwards. A seat under the COO rather than part of Expansion or Finance, because Expansion's job ends on opening day and Finance's job is the numbers and the controls. It becomes a house only when it has three permanent people and its own budget line. From Q2 or Q3 2027 Danish also holds Head of Expansion, so this seat becomes his second hat: one person, two seats, both reporting to the COO. That works because the Opening Project Lead carries the day-to-day of openings, and because Finance sizes and approves every capital need, so the person who raises the money never sets the number alone.",
     "duties": [
      "Accountable for the capital being in place by the date in Expansion's requisition.",
      "Takes the instrument, the entity and the controls from Finance before a raise, and the branch numbers from Finance on a fixed date each month afterwards.",
@@ -592,14 +592,14 @@
    {
     "id": "cm_sg",
     "role": "Country Manager, Singapore",
-    "holder": "Danish; passing to Shane once his Singapore pass is approved",
+    "holder": "Danish; passing to Shane in Q2 or Q3 2027, once his Singapore pass is approved",
     "house": "mgmt",
     "layer": "country",
     "level": "L4",
     "reportsTo": "Head of Management",
     "status": "open",
     "today": {},
-    "about": "Runs the Singapore branches through the Branch Managers, and owns and answers new enquiries for Singapore. Danish holds the seat today and hands it to Shane once Shane's Singapore pass is approved and Branch Managers are in place for the branches he leaves."
+    "about": "Runs the Singapore branches through the Branch Managers, and owns and answers new enquiries for Singapore. Danish holds the seat today and hands it to Shane in Q2 or Q3 2027, once Shane's Singapore pass is approved and Branch Managers are in place for the branches he leaves. Danish then moves to Head of Expansion."
    },
    {
     "id": "cm_th",
@@ -649,7 +649,7 @@
    {
     "id": "hoe",
     "role": "Head of Expansion",
-    "holder": "To be confirmed",
+    "holder": "CJ today; Danish succeeds him in Q2 or Q3 2027, when he hands over Singapore",
     "house": "exp",
     "layer": "global",
     "level": "L4",
@@ -662,7 +662,8 @@
     "duties": [
      "Standing goal: studios opened per year, with the pipeline of sites behind it.",
      "Line manager of Talent Acquisition, Procurement & Site Setup and the Opening Project Lead.",
-     "Leads the investor pitch with Investor Relations alongside; does not own the Investor Relations seat."
+     "Leads the investor pitch with Investor Relations alongside; does not own the Investor Relations seat.",
+     "Succession: Danish takes the seat in Q2 or Q3 2027, once he has handed Singapore to Shane. He keeps Investor Relations as a second hat, which is why the Opening Project Lead is created before the handover."
     ],
     "flows": [
      "opening",
@@ -723,7 +724,7 @@
     "status": "trigger",
     "today": null,
     "about": "The one person with visibility of every opening at every stage. Keeps the launch calendar and the stage gates for each location: site confirmed and co-signed by Management, capital approved by Finance and raised, tenancy signed, procurement and fit-out on schedule, Branch Manager appointed, Edu-trainer and founding coaches delivered, licences in hand, opening date held. Chases each owner, reports status weekly, and escalates a slip to the Head of Expansion. Coordinates; decides nothing. Pre-launch sales sit with Management through the appointed Branch Manager. Until this seat exists, the Head of Expansion holds this visibility.",
-    "trigger": "More than one opening running at a time.",
+    "trigger": "More than one opening running at a time, and in any case before Danish takes Head of Expansion in Q2 or Q3 2027, so that Expansion and Investor Relations fit in one person's week.",
     "flows": [
      "opening"
     ]
@@ -1771,7 +1772,7 @@
     if (key in REPORTS_TO_ID) return REPORTS_TO_ID[key];
     const byRole = SEATS.find(s => s.role === key); return byRole ? byRole.id : 'coo';
   }
-  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'five openings planned in 2027', agencies: 'bought, not hired', fa: 'stays central; country books via a Finance Executive', proc: 'buys for all three countries' };
+  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'five openings planned in 2027', agencies: 'bought, not hired', fa: 'stays central; country books via a Finance Executive', proc: 'buys for all three countries', hoe: 'CJ continues as a company director', ir: 'second hat for Danish from Q2 or Q3 2027' };
   let ocZoom = 1;
   function renderOrgChart() {
     const oc = document.getElementById('oc'); if (!oc) return;
