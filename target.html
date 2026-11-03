@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2311726B'/%3E%3C/svg%3E">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="sitenav"><a href="index.html">Current structure</a><span class="sep">|</span><span class="on">Target structure, one year ahead</span><span class="note">Proposed. Approved in principle by the CEO and shared with heads of house for their view. Nothing here is in force until it is drawn as current.</span></div>
+<style>
+  .sitenav { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px max(16px, env(safe-area-inset-left, 0px)); background: #11726B; color: #E8F1F0; }
+  .sitenav a { color: #fff; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.5); }
+  .sitenav .sep { opacity: .5; }
+  .sitenav .on { font-weight: 700; color: #FFBF00; }
+  .sitenav .note { flex-basis: 100%; opacity: .85; }
+  @media (min-width: 900px) { .sitenav .note { flex-basis: auto; margin-left: auto; text-align: right; } }
+</style>
+<title>MOVE Structure Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  /* Layout: a layer-by-house grid (rows = the four layers, columns = houses), a drawer for the selected seat, tabs for flows, hiring order and rulings. */
+  :root {
+    --green: #11726B; --green-deep: #0B4F4A; --green-tint: #E8F1F0;
+    --amber: #FFBF00; --amber-line: #C98F00; --amber-tint: #FFF6D6;
+    --ink: #141F1E; --ink-2: #3B4A48; --muted: #6B7D7A;
+    --line: #D5DEDC; --rule: #B5C2BF; --paper: #FFFFFF; --bg: #FAFBFB; --bg-2: #F1F5F4;
+    --shadow: 0 1px 2px rgba(20,31,30,.04), 0 6px 20px -14px rgba(20,31,30,.18);
+    --shadow-lift: 0 2px 4px rgba(20,31,30,.06), 0 14px 30px -14px rgba(20,31,30,.28);
+    --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --green: #4FB3AA; --green-deep: #2E8B83; --green-tint: #15302D;
+      --amber: #FFBF00; --amber-line: #E0B23A; --amber-tint: #3A2F10;
+      --ink: #EEF3F2; --ink-2: #C2D0CE; --muted: #8FA3A0;
+      --line: #273835; --rule: #3A4F4C; --paper: #121A19; --bg: #0C1312; --bg-2: #0F1816;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+      --shadow-lift: 0 2px 4px rgba(0,0,0,.5), 0 16px 34px -16px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --green: #4FB3AA; --green-deep: #2E8B83; --green-tint: #15302D;
+    --amber: #FFBF00; --amber-line: #E0B23A; --amber-tint: #3A2F10;
+    --ink: #EEF3F2; --ink-2: #C2D0CE; --muted: #8FA3A0;
+    --line: #273835; --rule: #3A4F4C; --paper: #121A19; --bg: #0C1312; --bg-2: #0F1816;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,.5), 0 16px 34px -16px rgba(0,0,0,.9);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 14px; line-height: 1.5; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+  .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 96px; max-width: 1480px; margin: 0 auto; }
+  header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); }
+  header.top .wrap { padding-block: 12px 0; }
+  .brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .brand h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+  .brand .sub { color: var(--muted); font-size: 13px; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+  .tabs { display: flex; gap: 2px; flex-wrap: wrap; }
+  .tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .tab[aria-selected="true"] { color: var(--green); border-bottom-color: var(--green); }
+  .tab:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--amber-line); outline-offset: 2px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; background: var(--bg-2); }
+  .seg button { appearance: none; border: 0; background: none; font: inherit; font-weight: 600; font-size: 13px; padding: 5px 12px; border-radius: 999px; color: var(--muted); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
+
+  .view { display: none; padding-top: 16px; }
+  .view.active { display: block; }
+  .lede { max-width: 68ch; color: var(--ink-2); margin: 0 0 14px; }
+  .intro { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 0 0 14px; max-width: 900px; }
+  .intro h2 { margin: 0 0 6px; font-size: 15px; }
+  .intro p { margin: 0 0 6px; color: var(--ink-2); max-width: 78ch; }
+  .intro p:last-child { margin-bottom: 0; }
+
+  .whatsnew { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 12px; font-size: 12.5px; color: var(--muted); }
+  .whatsnew:empty { display: none; }
+  .whatsnew .wn { appearance: none; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+  .whatsnew .wn.new { border-left: 3px solid var(--amber); }
+  .whatsnew .wn.moved { border-color: var(--green); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--muted); margin: 0 0 12px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 14px; height: 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); }
+  .legend i.new { border-left: 3px solid var(--amber); }
+  .legend i.moved { border-color: var(--green); }
+  .legend i.trigger { border-style: dashed; }
+  .legend i.open { border-style: dotted; }
+
+  .gridwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+  .grid { display: grid; grid-template-columns: 118px repeat(var(--cols), minmax(176px, 1fr)); min-width: max-content; }
+  .grid > div { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); min-width: 0; }
+  .grid .hh { position: sticky; top: 0; background: var(--bg-2); padding: 10px 10px; font-weight: 700; font-size: 12.5px; z-index: 1; }
+  .grid .hh small { display: block; font-weight: 500; color: var(--muted); font-size: 11.5px; }
+  .grid .lh { position: sticky; left: 0; background: var(--bg-2); padding: 10px; z-index: 2; }
+  .grid .lh b { display: block; font-size: 12.5px; }
+  .grid .lh small { display: block; color: var(--muted); font-size: 11px; line-height: 1.35; margin-top: 2px; }
+  .grid .cell { padding: 8px; display: flex; flex-direction: column; gap: 6px; background: var(--paper); }
+  .grid .cell.empty { background: repeating-linear-gradient(135deg, transparent 0 8px, var(--bg-2) 8px 9px); }
+  .grid .corner { background: var(--bg-2); position: sticky; left: 0; top: 0; z-index: 3; }
+
+  .seat { text-align: left; width: 100%; appearance: none; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px 7px 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; position: relative; transition: box-shadow .15s, transform .15s; }
+  .seat:hover { box-shadow: var(--shadow-lift); transform: translateY(-1px); }
+  .seat.selected { outline: 2px solid var(--green); outline-offset: 1px; }
+  .seat .r { font-weight: 700; font-size: 12.5px; line-height: 1.3; }
+  .seat .h { font-size: 12px; color: var(--ink-2); }
+  .seat .h.open { color: var(--muted); font-style: italic; }
+  .seat .m { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 3px; }
+  .chip { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .chip.lvl { color: var(--green); border-color: var(--green-tint); background: var(--green-tint); }
+  .chip.new { color: var(--amber-line); border-color: var(--amber-line); background: var(--amber-tint); }
+  .chip.moved { color: var(--green); border-color: var(--green); }
+  .chip.trigger { border-style: dashed; }
+  .chip.whatif { color: var(--paper); background: var(--green); border-color: var(--green); }
+  .seat.new { border-left: 3px solid var(--amber); }
+  .seat.moved { border-color: var(--green); }
+  .seat.trigger { border-style: dashed; }
+  .seat.open { border-style: dotted; }
+  .seat.lapses { opacity: .55; }
+  .seat.external, .seat.status { background: var(--bg-2); }
+  .seat.whatif { box-shadow: 0 0 0 2px var(--green) inset; }
+
+  .stack { display: none; flex-direction: column; gap: 14px; }
+  .stack .house { border: 1px solid var(--line); border-radius: 12px; background: var(--paper); overflow: hidden; }
+  .stack .house h3 { margin: 0; padding: 10px 12px; background: var(--bg-2); font-size: 14px; }
+  .stack .house h3 small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; }
+  .stack .lay { padding: 8px 12px 10px; border-top: 1px solid var(--line); }
+  .stack .lay .ll { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+  .stack .lay .seats { display: flex; flex-direction: column; gap: 6px; }
+  @media (max-width: 760px) { .gridwrap { display: none; } .stack { display: flex; } }
+
+  .drawer { position: fixed; top: env(safe-area-inset-top, 0px); right: 0; bottom: 0; width: min(420px, 100%); background: var(--paper); border-left: 1px solid var(--line); box-shadow: var(--shadow-lift); transform: translateX(105%); transition: transform .2s ease; z-index: 20; display: flex; flex-direction: column; padding-right: env(safe-area-inset-right, 0px); }
+  .drawer.open { transform: none; }
+  @media (prefers-reduced-motion: reduce) { .drawer, .seat { transition: none; } }
+  .drawer .dh { padding: 14px 16px 10px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+  .drawer .dh h2 { margin: 0; font-size: 17px; line-height: 1.25; }
+  .drawer .dh .who { color: var(--ink-2); margin-top: 2px; }
+  .drawer .close { appearance: none; border: 1px solid var(--line); background: var(--paper); border-radius: 999px; width: 30px; height: 30px; font: inherit; cursor: pointer; color: var(--ink); flex: none; }
+  .drawer .db { overflow-y: auto; padding: 12px 16px 24px; display: flex; flex-direction: column; gap: 14px; }
+  .kv { display: grid; grid-template-columns: 96px 1fr; gap: 4px 10px; font-size: 13px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; }
+  .sec h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .sec ul { margin: 0; padding-left: 18px; }
+  .sec li { margin: 3px 0; }
+  .note { background: var(--amber-tint); border: 1px solid var(--amber-line); border-radius: 8px; padding: 8px 10px; font-size: 13px; }
+  .note.green { background: var(--green-tint); border-color: var(--green); }
+  .note.internal { background: var(--bg-2); border-color: var(--line); }
+  .flowlink { display: inline-block; margin: 2px 6px 2px 0; font-size: 12.5px; font-weight: 600; color: var(--green); background: none; border: 1px solid var(--green); border-radius: 999px; padding: 3px 10px; cursor: pointer; font-family: inherit; }
+  .whatif-box { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg-2); }
+  .whatif-box h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .whatif-box label { display: grid; grid-template-columns: 86px 1fr; align-items: center; gap: 8px; font-size: 13px; margin: 6px 0; }
+  .whatif-box select { font: inherit; font-size: 13px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); min-width: 0; width: 100%; }
+  .btn { appearance: none; font: inherit; font-weight: 600; font-size: 13px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .btn.primary { background: var(--green); border-color: var(--green); color: #fff; }
+  .btn.small { font-size: 12px; padding: 4px 10px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+  .changes { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; background: var(--paper); border-top: 1px solid var(--line); box-shadow: var(--shadow-lift); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px calc(10px + env(safe-area-inset-bottom, 0px)); display: none; }
+  .changes.on { display: block; }
+  .changes .in { max-width: 1480px; margin: 0 auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+  .changes .list { font-size: 12.5px; color: var(--ink-2); flex: 1 1 320px; min-width: 0; }
+  .changes .list div { padding: 1px 0; }
+  .toast { position: fixed; left: 50%; bottom: calc(70px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 999px; font-size: 13px; z-index: 30; }
+
+  .flows { display: grid; grid-template-columns: 240px 1fr; gap: 16px; }
+  @media (max-width: 860px) { .flows { grid-template-columns: 1fr; } }
+  .flownav { display: flex; flex-direction: column; gap: 4px; }
+  .flownav button { text-align: left; appearance: none; font: inherit; font-weight: 600; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; color: var(--ink-2); }
+  .flownav button[aria-selected="true"] { border-color: var(--green); color: var(--green); background: var(--green-tint); }
+  .flowbody { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; min-width: 0; }
+  .flowbody h2 { margin: 0 0 4px; font-size: 19px; text-wrap: balance; }
+  .flowbody .why { color: var(--ink-2); margin: 0 0 14px; max-width: 68ch; }
+  .steps { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 0; counter-reset: s; }
+  .steps li { display: grid; grid-template-columns: 34px 150px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); align-items: start; }
+  .steps li:first-child { border-top: 0; }
+  .steps li::before { counter-increment: s; content: counter(s); width: 26px; height: 26px; border-radius: 999px; background: var(--green-tint); color: var(--green); font-weight: 800; font-size: 12.5px; display: grid; place-items: center; }
+  .steps .own { font-weight: 700; font-size: 13px; }
+  .steps .act { color: var(--ink-2); min-width: 0; }
+  @media (max-width: 560px) { .steps li { grid-template-columns: 30px 1fr; } .steps .act { grid-column: 2; } }
+  .rules h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .rules ul { margin: 0; padding-left: 18px; }
+  .rules li { margin: 4px 0; max-width: 72ch; }
+  .layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .layers .lc { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg-2); }
+  .layers .lc b { display: block; margin-bottom: 2px; }
+  .layers .lc small { color: var(--muted); display: block; }
+  .layers .lc p { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
+
+  .hire { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .hire li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .hire .n { width: 26px; height: 26px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 12.5px; }
+  .hire .t { font-weight: 700; }
+  .hire .t small { font-weight: 500; color: var(--muted); margin-left: 6px; }
+  .hire p { margin: 3px 0 0; color: var(--ink-2); max-width: 78ch; }
+  .hire .trig { margin-top: 4px; font-size: 12.5px; }
+  .hire .trig b { color: var(--amber-line); }
+
+  table.rul { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; font-size: 13px; }
+  table.rul th, table.rul td { text-align: left; padding: 9px 11px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.rul th { background: var(--bg-2); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .tablewrap { overflow-x: auto; }
+  .src { font-size: 12px; color: var(--muted); margin-top: 16px; max-width: 80ch; }
+  /* org chart tree */
+  .legend .zoom { margin-left: auto; gap: 4px; }
+  .ocwrap { overflow: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); padding: 18px; }
+  .ocscale { transform-origin: top left; }
+  .oc { position: relative; display: inline-block; min-width: 100%; }
+  .oclines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+  .oclines path { fill: none; stroke: var(--rule, #C3CECC); stroke-width: 1.5; }
+  .oclines path.dashed { stroke-dasharray: 4 4; }
+  .octop { display: flex; flex-direction: column; align-items: center; gap: 28px; position: relative; }
+  .ocrow { display: flex; gap: 16px; align-items: flex-start; justify-content: center; }
+  .occols { display: flex; gap: 14px; align-items: flex-start; }
+  .occol { width: 178px; flex: none; display: flex; flex-direction: column; gap: 8px; }
+  .ochouse { font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--green); border-bottom: 2px solid var(--green); padding-bottom: 3px; margin-bottom: 2px; min-height: 30px; display: flex; align-items: flex-end; }
+  .ochouse.plain { color: var(--muted); border-bottom-color: var(--line); }
+  .ob { text-align: left; appearance: none; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; cursor: pointer; display: flex; flex-direction: column; gap: 1px; width: 178px; }
+  .ob:hover { box-shadow: var(--shadow-lift); }
+  .ob .r { font-weight: 700; font-size: 12px; line-height: 1.25; }
+  .ob .h { font-size: 11px; color: var(--ink-2); line-height: 1.3; }
+  .ob .h.open { color: var(--muted); font-style: italic; }
+  .ob .hat { font-size: 10px; color: var(--muted); border-top: 1px dashed var(--line); margin-top: 3px; padding-top: 2px; }
+  .ob .m { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
+  .ob.head { background: var(--green-tint); border-color: var(--green); }
+  .ob.exec { background: var(--green); border-color: var(--green); color: #fff; }
+  .ob.exec .h { color: #E8F1F0; }
+  .ob.exec .chip.lvl { background: rgba(255,255,255,.18); color: #fff; border-color: transparent; }
+  .ob.new { border-left: 3px solid var(--amber); }
+  .ob.moved { border-color: var(--green); border-width: 1.5px; }
+  .ob.trigger { border-style: dashed; }
+  .ob.open { border-style: dotted; }
+  .ob.lapses { opacity: .55; }
+  .ob.external { background: var(--bg-2); }
+  .ob.d1 { width: 164px; margin-left: 14px; }
+  .ob.d2 { width: 150px; margin-left: 28px; }
+  .ob.d3 { width: 136px; margin-left: 42px; }
+  .ob.d4 { width: 122px; margin-left: 56px; }
+  .mh { font-size: 14px; margin: 18px 0 8px; }
+  .bn { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .bn div.card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+  .bn .card b { display: block; font-size: 14px; margin-bottom: 4px; }
+  .bn .card p { margin: 4px 0; color: var(--ink-2); }
+  .bn .card p em { font-style: normal; color: var(--muted); }
+  .sbbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; margin: 0 0 10px; }
+  .sbform { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .sbform input, .sbform select, .sbedit input { font: inherit; font-size: 13px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); min-width: 0; }
+  .sbform input { width: 200px; max-width: 100%; }
+  .sbedit { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; background: var(--green-tint); border: 1px solid var(--green); border-radius: 10px; padding: 8px 10px; margin: 0 0 10px; font-size: 13px; }
+  .sbedit input { width: 180px; }
+  .sbwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+  .seat.draft { border-left: 3px solid var(--amber); border-style: dashed; }
+  .seat.picked { outline: 2px solid var(--green); outline-offset: 1px; }
+  .seat[draggable="true"] { cursor: grab; }
+  .grid .cell.over { background: var(--green-tint); }
+  .grid .cell.target { cursor: copy; }
+  .kpi-list { margin: 0; padding-left: 18px; }
+  .kpi-list li { margin: 3px 0; }
+  .glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .glossary div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+  .glossary b { display: block; margin-bottom: 2px; }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1 id="pageTitle">MOVE Structure Explorer</h1>
+      <span class="sub" id="pageSub"></span>
+    </div>
+    <div class="bar">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" data-view="structure" aria-selected="true">Structure</button>
+        <button class="tab" role="tab" data-view="orgchart" aria-selected="false">Org chart</button>
+        <button class="tab" role="tab" data-view="flows" aria-selected="false">How it works</button>
+        <button class="tab" role="tab" data-view="measures" aria-selected="false">Measures</button>
+        <button class="tab" role="tab" data-view="glossary" aria-selected="false">Words used</button>
+
+      </div>
+      <div class="seg" id="modeSeg" role="group" aria-label="View">
+        <button id="modeToday" aria-pressed="false">Today</button>
+        <button id="modeTarget" aria-pressed="true">Target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="view active" id="view-structure">
+    <div class="intro">
+      <h2>How to read this page</h2>
+      <p>MOVE is organised in houses, each led by a head who reports to the COO. Every seat sits on one of four layers that say how far its work reaches: the whole company, every country from HQ, one country, or one branch. A seat reports up its own house; the Country Manager directs people on the ground in their country on local matters.</p>
+      <p><b>Today</b> shows where every seat sits now. <b>Target</b> shows the structure we are moving to over the next year. Click any seat to see what it does, who it reports to, the number it owns, and what changes. The <b>How it works</b> tab explains the hand-offs between houses, one owner per step. The <b>Measures</b> tab lists every seat's number and the split where two seats touch the same outcome.</p>
+    </div>
+    <p class="lede" id="structureLede"></p>
+    <div class="whatsnew" id="whatsnew"></div>
+    <div class="legend">
+      <span><i></i> Current seat</span>
+      <span><i class="new"></i> New seat</span>
+      <span><i class="moved"></i> Moved seat or changed line</span>
+      <span><i class="trigger"></i> Added when its trigger is met</span>
+      <span><i class="open"></i> Open seat</span>
+    </div>
+    <div class="gridwrap"><div class="grid" id="grid"></div></div>
+    <div class="stack" id="stack"></div>
+  </section>
+
+  <section class="view" id="view-orgchart">
+    <p class="lede" id="ocLede">The same seats drawn as a tree with reporting lines. Each house stacks downward under its head; a line from the left edge of a box leads to the seats that report to it. Click any box for its card.</p>
+    <div class="legend">
+      <span><i></i> Current seat</span>
+      <span><i class="new"></i> New seat</span>
+      <span><i class="moved"></i> Moved seat or changed line</span>
+      <span><i class="trigger"></i> Added when its trigger is met</span>
+      <span><i class="open"></i> Open seat</span>
+      <span class="zoom">Zoom <button class="btn small" data-zoom="0.6" type="button">60%</button><button class="btn small" data-zoom="0.8" type="button">80%</button><button class="btn small" data-zoom="1" type="button">100%</button></span>
+    </div>
+    <div class="ocwrap"><div class="ocscale" id="ocScale"><div class="oc" id="oc"><svg class="oclines" id="ocLines"></svg></div></div></div>
+    <p class="src">Country specialists in every house report up their own house; the Country Manager of their country directs them on local matters. Edu-trainers are based in branches and take branch matters from the Branch Manager. Branch Pioneer is a status a Branch Manager carries, not a seat.</p>
+  </section>
+
+  <section class="view" id="view-flows">
+    <p class="lede">The hand-offs that make the structure work. Each chain has one owner per step, so a hand-over is never a gap. Every seat's card links to the chains it takes part in.</p>
+    <div class="flows">
+      <nav class="flownav" id="flownav"></nav>
+      <article class="flowbody" id="flowbody"></article>
+    </div>
+  </section>
+
+  <section class="view" id="view-measures">
+    <p class="lede">Every seat owns its numbers, and no number has two owners. For each seat, its own outcomes come first (what it holds whatever anyone else does), then what it owes another seat by a date. Where two seats touch the same outcome, the split below says which part each one owns, so the two numbers pull in the same direction instead of against each other.</p>
+    <h3 class="mh">The number each seat owns</h3>
+    <div class="tablewrap"><table class="rul" id="kpiTable"><thead><tr><th>Seat</th><th>House</th><th>Owns the number for</th></tr></thead><tbody></tbody></table></div>
+    <h3 class="mh">Where two seats touch the same outcome</h3>
+    <div class="tablewrap"><table class="rul" id="conflictTable"><thead><tr><th>Outcome</th><th>Seat A owns</th><th>Seat B owns</th><th>Why the split holds</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="view" id="view-glossary">
+    <p class="lede">Short definitions of the words this page uses.</p>
+    <div class="glossary" id="glossary"></div>
+  </section>
+
+
+</div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh">
+    <div><h2 id="dTitle"></h2><div class="who" id="dWho"></div></div>
+    <button class="close" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="db" id="dBody"></div>
+</aside>
+
+<div class="changes" id="changes">
+  <div class="in">
+    <div class="list" id="changeList"></div>
+    <div class="row">
+      <button class="btn small" id="copyChanges">Copy changes</button>
+      <button class="btn small" id="resetChanges">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // 'leadership' shows everything, including open personnel questions, the hiring order and the rulings.
+  // 'team' shows the structure and how it works, in plain language, with nothing that is still being decided about a named person.
+  const AUDIENCE = 'team';
+  const TEAM = AUDIENCE === 'team';
+
+  // DATA START (built from the leadership source; do not edit here)
+  const LAYERS = [
+   {
+    "id": "global",
+    "name": "HQ Global",
+    "sub": "Leads the whole company. CEO, COO, heads of house."
+   },
+   {
+    "id": "extended",
+    "name": "HQ Extended",
+    "sub": "Specialist seats that serve every country from HQ."
+   },
+   {
+    "id": "country",
+    "name": "Country",
+    "sub": "People on the ground in one country. They report up their house; the Country Manager directs them on local matters."
+   },
+   {
+    "id": "branch",
+    "name": "Branch",
+    "sub": "One location: the branch team."
+   }
+  ];
+  const HOUSES = [
+   {
+    "id": "exec",
+    "name": "Executive",
+    "sub": "CEO, COO and the seats that report to them directly"
+   },
+   {
+    "id": "mgmt",
+    "name": "Management House",
+    "sub": "Head: David (General Manager)"
+   },
+   {
+    "id": "exp",
+    "name": "Expansion House",
+    "sub": "Head of Expansion"
+   },
+   {
+    "id": "tech",
+    "name": "Technology & Data House",
+    "sub": "Head: Elvis Lee (CTO)"
+   },
+   {
+    "id": "mkt",
+    "name": "Marketing House",
+    "sub": "Head: Hitomi (Marketing Director)"
+   },
+   {
+    "id": "fin",
+    "name": "Finance House",
+    "sub": "Head: Jason (Finance Director)"
+   },
+   {
+    "id": "pc",
+    "name": "People & Culture House",
+    "sub": "Head: Jamie (P&C Director)"
+   },
+   {
+    "id": "edu",
+    "name": "Education House",
+    "sub": "Head: the Education Council"
+   }
+  ];
+  const SEATS = [
+   {
+    "id": "ceo",
+    "role": "Chief Executive Officer",
+    "holder": "Samuel Tan",
+    "house": "exec",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "Board",
+    "status": "current",
+    "today": {},
+    "about": "Sets the strategy, holds the external relationships and the board, and approves the shape of the company: any new head-of-house seat, any seat reporting to the CEO or the COO, pay above the band for a tier, and any scheme that binds more than one role.",
+    "duties": [
+     "Spokesperson for press and investors at group level.",
+     "Approves the target chart on this page."
+    ]
+   },
+   {
+    "id": "coo",
+    "role": "Chief Operating Officer",
+    "holder": "Way Sern",
+    "house": "exec",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "CEO",
+    "status": "current",
+    "today": {},
+    "about": "Every house reports to the COO. Approves seats inside a house within the agreed headcount and budget, sets the pay bands, and settles anything two heads of house cannot settle between them.",
+    "duties": [
+     "Owns the operating model: who owns what, and how work moves between houses.",
+     "Three seats report here directly besides the heads of house: the Business Analyst, Investor Relations, and the Enquiry and Events Operations Lead."
+    ]
+   },
+   {
+    "id": "ba",
+    "role": "Business Analyst",
+    "holder": "Felicia",
+    "house": "exec",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "COO",
+    "status": "new",
+    "today": null,
+    "about": "A six-month assignment, reviewed at month three, holding at most two projects at a time. The analyst maps how a piece of work actually runs, measures it, names the gap, proposes the owner and the fix, writes it down, and checks later that it held. The analyst proposes; the head of house decides; the COO settles anything that crosses houses.",
+    "duties": [
+     "Project 1: the opening requisition and launch calendar as a working tool, with every stage gate and its owner, so each new location runs off the same calendar.",
+     "Project 2: the enquiry routing table, the monthly enquiry measures and the test run after each Captain change, held until the Enquiry and Events Operations Lead is in seat and handed over on that person's first day."
+    ],
+    "caretaker": "May hold a piece of work that has no owner for at most 60 days, with a named head of house taking it over on a date set on day one.",
+    "flows": [
+     "opening",
+     "enquiries"
+    ]
+   },
+   {
+    "id": "ir",
+    "role": "Investor Relations",
+    "holder": "Danish",
+    "house": "exec",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "COO",
+    "status": "moved",
+    "today": {
+     "house": "exp",
+     "layer": "extended",
+     "reportsTo": "Head of Expansion"
+    },
+    "about": "Owns the investor relationship for the life of every branch: finding, qualifying, pitching and closing investors for each opening, then the reporting, studio tours, investor events and any change of stake afterwards. A seat under the COO rather than part of Expansion or Finance, because Expansion's job ends on opening day and Finance's job is the numbers and the controls. It becomes a house only when it has three permanent people and its own budget line.",
+    "duties": [
+     "Accountable for the capital being in place by the date in Expansion's requisition.",
+     "Takes the instrument, the entity and the controls from Finance before a raise, and the branch numbers from Finance on a fixed date each month afterwards.",
+     "Leads investor meets, open days and studio tours; the country team hosts them.",
+     "Serves the sister company Tribuo on request under a service agreement, with MOVE's needs first."
+    ],
+    "country": "A second Investor Relations person based where the raises are, Singapore first, once raises or investor events run in two countries in the same quarter. The lead keeps the investor register, the pitch standard and the reporting; the country person runs the raise and the events there.",
+    "flows": [
+     "capital",
+     "opening"
+    ]
+   },
+   {
+    "id": "ir_c",
+    "role": "Country Investor Relations",
+    "holder": "Open seat, Singapore first",
+    "house": "exec",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "Investor Relations",
+    "status": "trigger",
+    "today": null,
+    "about": "A second Investor Relations person based in the country where the raises are. Runs the raise, the investor meets, open days and studio tours there to the lead's standard; the lead keeps the investor register, the pitch standard and the reporting. Until the seat exists, the Country Manager's team hosts events when Investor Relations asks, and local compliance sits with Finance's country entity.",
+    "trigger": "Raises or investor events in two countries in the same quarter, which the 2027 opening plan already implies. Expected early 2027, Singapore first."
+   },
+   {
+    "id": "hom",
+    "role": "Head of Management",
+    "holder": "David (General Manager)",
+    "house": "mgmt",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "COO",
+    "status": "current",
+    "today": {},
+    "about": "Runs the branches through the Country Managers and owns the client journey from enrolment to renewal. Appoints the Branch Manager for every new location and co-signs every new site with Expansion.",
+    "duties": [
+     "Holds the Thailand Country Manager seat until it is filled.",
+     "Country Managers own and answer new enquiries; the Enquiry and Events Operations Lead, under the COO, runs the routing and the response rule they work to."
+    ]
+   },
+   {
+    "id": "eeo",
+    "role": "Enquiry and Events Operations Lead",
+    "holder": "Open seat",
+    "house": "exec",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "COO",
+    "status": "new",
+    "today": null,
+    "about": "One operations seat for the two things every house touches but nobody ran: enquiries and events. It owns the system and the logistics; the content stays with whoever the enquiry or the event belongs to. It coordinates with every enquiry owner and every requesting house, routes and directs, and is measured on its own numbers: response rule met, routing accuracy, events delivered to brief. It does not answer enquiries, and it does not run an event's programme. A direct seat under the COO, because it serves every house and no single house owns it.",
+    "scale": "The seat plans; it does not host. Every event has a named on-the-day lead from the country team (the Country Manager's team, or Talent Acquisition's country person for a career day), who runs the run-sheet on site. The seat prepares each event remotely from the playbook, holds a checklist call with each on-the-day lead the day before, is on call during the event, and collects the report after. Three seminars in three countries on one weekend are three run-sheets and three on-the-day leads, not three flights. The seat travels only for a first-of-its-kind event or a format it is still writing the playbook for. That is why the Country Manager directs country people on local matters: the country team has to own the day.",
+    "career": "From here the seat can grow three ways. Up: Head of Client Experience, leading a response team and an events team if the volume ever justifies them (a house when it reaches three permanent people with a budget line). Across: Country Manager, because the seat learns every enquiry type, every branch and every client journey. Sideways: the coordination lane, Opening Project Lead or Business Analyst. On the Growth Map the seat is L3; a team lead is L4.",
+    "duties": [
+     "Enquiries: the routing table (which type of enquiry goes to which owner), the response rule across every inbox and the check that it is met, the automation and Captain content, the change log, and the monthly measures.",
+     "Events: the one calendar for the company; the playbook for setting an event up (venue, seating, AV, materials, run-sheet, roles on the day); registration through the standard form with the consent gate; the enquiry side of every event (registration link, routing and auto-replies in Chatwoot); coordination with the country team on the day; attendance and outcome reported afterwards.",
+     "How a request works: the house that wants the event brings the brief, the speakers and the content (Talent Acquisition for a career day, Marketing for a client seminar, Education for a coach workshop). This seat turns the brief into the date, the venue, the registration link, the Chatwoot set-up and the run-sheet, and hands back a report.",
+     "Writes what is needed; Technology & Data builds it. Splits into two seats when events run weekly in more than one country."
+    ],
+    "flows": [
+     "enquiries",
+     "events"
+    ]
+   },
+   {
+    "id": "cm_my",
+    "role": "Country Manager, Malaysia",
+    "holder": "Matt",
+    "house": "mgmt",
+    "layer": "country",
+    "level": "L4",
+    "reportsTo": "Head of Management",
+    "status": "current",
+    "today": {},
+    "about": "Senior-most Country Manager. Runs the Malaysian branches through the Branch Managers and owns conversion, renewal and branch performance there. Owns and answers new enquiries for Malaysia.",
+    "duties": [
+     "Co-signs new sites in Malaysia with Expansion.",
+     "Directs people on the ground from other houses on local matters.",
+     "Raises replacement and growth headcount requests to Talent Acquisition."
+    ]
+   },
+   {
+    "id": "cm_sg",
+    "role": "Country Manager, Singapore",
+    "holder": "Open seat; Danish interim",
+    "house": "mgmt",
+    "layer": "country",
+    "level": "L4",
+    "reportsTo": "Head of Management",
+    "status": "open",
+    "today": {},
+    "about": "Runs the Singapore branches through the Branch Managers once filled, and owns and answers new enquiries for Singapore. Until then Danish holds it."
+   },
+   {
+    "id": "cm_th",
+    "role": "Country Manager, Thailand",
+    "holder": "Open seat; David interim",
+    "house": "mgmt",
+    "layer": "country",
+    "level": "L4",
+    "reportsTo": "Head of Management",
+    "status": "open",
+    "today": {},
+    "about": "Runs the Thai branches through the Branch Managers once filled. David holds it until then and delegates the Thailand enquiry seat to Wiwit. Filling it is the trigger for every Thailand country specialist in other houses.",
+    "trigger": "Target: in seat before the first 2027 opening in Thailand, with the Head of Education, Thailand appointed alongside. The search starts once the Singapore seat is settled."
+   },
+   {
+    "id": "bm",
+    "role": "Branch Managers",
+    "holder": "One per branch",
+    "house": "mgmt",
+    "layer": "branch",
+    "level": "L2",
+    "reportsTo": "Country Manager",
+    "status": "current",
+    "today": {},
+    "about": "Runs the branch: the team, the schedule, conduct and the numbers. Decides who is hired for the branch after the manager interview; Education's proficiency test is a pass-or-fail gate before that. Directs the whole branch team on branch matters, including the Edu-trainer based there.",
+    "duties": [
+     "Once a new site is confirmed, Management appoints which manager becomes Branch Manager of that location. The manager stays under the Country Manager throughout the opening and is paid as normal. Branch Pioneer is a status the manager carries, not a seat.",
+     "Pre-launch sales and the first clients of a new location sit with the appointed Branch Manager and the Country Manager.",
+     "The manager walks the unit and never signs the tenancy."
+    ],
+    "flows": [
+     "opening"
+    ]
+   },
+   {
+    "id": "tr",
+    "role": "Trainers",
+    "holder": "Per branch, Junior to Senior to Lead",
+    "house": "mgmt",
+    "layer": "branch",
+    "level": "L1",
+    "reportsTo": "Branch Manager",
+    "status": "current",
+    "today": {},
+    "about": "Coaches clients. The coaching method comes from Education through the branch Edu-trainer; doing the job to standard is trained by Management."
+   },
+   {
+    "id": "hoe",
+    "role": "Head of Expansion",
+    "holder": "To be confirmed",
+    "house": "exp",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "COO",
+    "status": "moved",
+    "today": {
+     "reportsTo": "COO"
+    },
+    "about": "Owns where and when MOVE opens next: the location strategy and the pipeline of sites and countries, the site decision with Management's co-sign, the opening budget, and the dated requisition for every opening (site, date, capital need, coaches by date). Decides go or no-go at each gate and hands the branch to Management on opening day. Accountable for opening on time. Day-to-day execution sits with Procurement & Site Setup and the Opening Project Lead; until that seat exists, the head also tracks every stage.",
+    "duties": [
+     "Standing goal: studios opened per year, with the pipeline of sites behind it.",
+     "Line manager of Talent Acquisition, Procurement & Site Setup and the Opening Project Lead.",
+     "Leads the investor pitch with Investor Relations alongside; does not own the Investor Relations seat."
+    ],
+    "flows": [
+     "opening",
+     "capital",
+     "talent"
+    ]
+   },
+   {
+    "id": "ta",
+    "role": "Talent Acquisition Lead",
+    "holder": "Jonathan",
+    "house": "exp",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "Head of Expansion",
+    "status": "moved",
+    "today": {
+     "house": "pc",
+     "layer": "extended",
+     "reportsTo": "Head of People & Culture"
+    },
+    "about": "Works like a recruitment agency inside the company. Takes headcount requests from Expansion (new openings) and from Management (replacements and growth), finds candidates, and delivers them to the hiring gates. Its number is hires who pass the gates and sign, against the requests, by the date.",
+    "duties": [
+     "Sourcing: campaigns, ads, social media, career days and physical seminars, and partnerships with universities, sports clubs and fitness communities.",
+     "Country people, or coach-contractors hosting career talks, do the on-the-ground part in each country.",
+     "Refill: a hire who leaves inside probation is replaced without counting again.",
+     "Marketing supports the campaigns as a service.",
+     "Serves the sister company Tribuo on request under a service agreement, with MOVE's needs first."
+    ],
+    "flows": [
+     "talent",
+     "opening"
+    ]
+   },
+   {
+    "id": "setup",
+    "role": "Procurement & Site Setup Lead",
+    "holder": "Jack",
+    "house": "exp",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "Head of Expansion",
+    "status": "current",
+    "today": {},
+    "about": "Site scouting support, fit-out, procurement and setup for every opening, in every country, from HQ. Runs the tenancy process for each site: negotiates the terms with the landlord, puts the commitment to Finance for its check under the Approval Limits Policy, and arranges the signature by the entity's authorised signatory, who is a director. The appointed Branch Manager walks the unit and never signs. Country setup people sit under this seat once a country has openings dated.",
+    "flows": [
+     "opening"
+    ]
+   },
+   {
+    "id": "opl",
+    "role": "Opening Project Lead",
+    "holder": "Open seat",
+    "house": "exp",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "Head of Expansion",
+    "status": "trigger",
+    "today": null,
+    "about": "The one person with visibility of every opening at every stage. Keeps the launch calendar and the stage gates for each location: site confirmed and co-signed by Management, capital approved by Finance and raised, tenancy signed, procurement and fit-out on schedule, Branch Manager appointed, Edu-trainer and founding coaches delivered, licences in hand, opening date held. Chases each owner, reports status weekly, and escalates a slip to the Head of Expansion. Coordinates; decides nothing. Pre-launch sales sit with Management through the appointed Branch Manager. Until this seat exists, the Head of Expansion holds this visibility.",
+    "trigger": "More than one opening running at a time.",
+    "flows": [
+     "opening"
+    ]
+   },
+   {
+    "id": "ta_c",
+    "role": "Country Talent Acquisition",
+    "holder": "Per country, when needed",
+    "house": "exp",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "Talent Acquisition Lead",
+    "status": "trigger",
+    "today": null,
+    "about": "The person on the ground who runs career sharing and physical seminars in a country and feeds its candidate pool. Reports to the Talent Acquisition Lead; the Country Manager directs them on local matters.",
+    "trigger": "Openings dated in that country within the next two quarters, or language makes sourcing from HQ ineffective (Thailand). Until then, coach-contractors hosting career talks are the on-the-ground layer."
+   },
+   {
+    "id": "setup_c",
+    "role": "Country Setup",
+    "holder": "Per country, when needed",
+    "house": "exp",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "Procurement & Site Setup Lead",
+    "status": "trigger",
+    "today": null,
+    "about": "Local procurement, contractors and fit-out supervision for openings in that country. Runs the tenancy process on the ground: landlord negotiation, local lawyer, walk-through, handover of the unit. Does not sign; the signature is always the entity's authorised signatory, a director, after Finance's check.",
+    "trigger": "Two or more openings dated in that country within two quarters."
+   },
+   {
+    "id": "cto",
+    "role": "Head of Technology & Data",
+    "holder": "Elvis Lee (Chief Technology Officer)",
+    "house": "tech",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "COO",
+    "status": "current",
+    "today": {},
+    "about": "Platform owner for the Client Hub, Business OS, the Talent module and Chatwoot. Builds what the business owners specify; the business owners own the rules.",
+    "flows": [
+     "enquiries",
+     "talent"
+    ]
+   },
+   {
+    "id": "pe",
+    "role": "Product Engineers",
+    "holder": "Ming, Rushdan",
+    "house": "tech",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "Head of Technology & Data",
+    "status": "current",
+    "today": {}
+   },
+   {
+    "id": "hmk",
+    "role": "Head of Marketing",
+    "holder": "Hitomi (Marketing Director)",
+    "house": "mkt",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "COO",
+    "status": "current",
+    "today": {},
+    "about": "Owns leads and the brand. Owns lead-generating events, and press and public relations with the CEO as spokesperson. Supports Talent Acquisition's campaigns as a service.",
+    "flows": [
+     "events",
+     "enquiries"
+    ]
+   },
+   {
+    "id": "mm",
+    "role": "Marketing Manager",
+    "holder": "Clarrine",
+    "house": "mkt",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "Head of Marketing",
+    "status": "current",
+    "today": {},
+    "about": "Owns business and partnership enquiries, with her own Marketing inbox in Chatwoot."
+   },
+   {
+    "id": "cl",
+    "role": "Creative Lead",
+    "holder": "Emily",
+    "house": "mkt",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "Head of Marketing",
+    "status": "current",
+    "today": {}
+   },
+   {
+    "id": "ads",
+    "role": "Ads Executor",
+    "holder": "Jon",
+    "house": "mkt",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "Head of Marketing",
+    "status": "current",
+    "today": {},
+    "about": "Serves every country from HQ. Works with local agencies where a market needs them."
+   },
+   {
+    "id": "agencies",
+    "role": "Local agencies",
+    "holder": "Outsourced, per market",
+    "house": "mkt",
+    "layer": "country",
+    "level": "",
+    "reportsTo": "Marketing seats at HQ",
+    "status": "external",
+    "today": {},
+    "about": "Marketing's country layer is bought, not hired: local media, production and language work through agencies directed from HQ."
+   },
+   {
+    "id": "hof",
+    "role": "Head of Finance",
+    "holder": "Jason (Finance Director)",
+    "house": "fin",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "COO",
+    "status": "current",
+    "today": {},
+    "about": "Sizes and approves the capital for every opening under the Approval Limits Policy; incorporates, receives funds, issues shares and keeps the investor register. Gives Investor Relations the instrument, the entity, the controls and the monthly numbers. Runs payroll in all three countries from the contract and role-change record People Operations keeps. Checks every tenancy commitment before a director signs.",
+    "flows": [
+     "capital",
+     "opening"
+    ]
+   },
+   {
+    "id": "fm",
+    "role": "Finance Manager",
+    "holder": "Jireh",
+    "house": "fin",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "Head of Finance",
+    "status": "current",
+    "today": {}
+   },
+   {
+    "id": "fa",
+    "role": "Finance Assistant",
+    "holder": "Jane",
+    "house": "fin",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "Finance Manager",
+    "status": "current",
+    "today": {}
+   },
+   {
+    "id": "hpc",
+    "role": "Head of People & Culture",
+    "holder": "Jamie (People & Culture Director)",
+    "house": "pc",
+    "layer": "global",
+    "level": "L4",
+    "reportsTo": "COO",
+    "status": "current",
+    "today": {},
+    "about": "Global HR: people and development, the leadership programme, MoveU, the pay band table, and the retention target. Sets the targets, approves the strategy and makes the key decisions; the HR Manager runs the employee lifecycle.",
+    "duties": [
+     "Keeps the six-month retention measure.",
+     "Pre-qualification of every candidate stays in this house."
+    ],
+    "flows": [
+     "hr",
+     "talent"
+    ]
+   },
+   {
+    "id": "hrm",
+    "role": "HR Manager",
+    "holder": "Open seat",
+    "house": "pc",
+    "layer": "extended",
+    "level": "L3",
+    "reportsTo": "Head of People & Culture",
+    "status": "new",
+    "today": null,
+    "about": "Owns the employee lifecycle from signed offer onward across all three countries: contracts, onboarding, probation, statutory compliance, passes, exits, policies. Business owner of the Talent module. The difference from People Operations: the HR Manager owns the process and the compliance across countries; People Operations does the work in a country.",
+    "duties": [
+     "Payroll stays with Finance. People Operations owns the record of who is on which contract, at what rate, from what date, with every role change as a dated entry approved before it reaches payroll; Finance computes, pays and remits from that record. The person who changes a rate is never the person who pays it.",
+     "Pre-qualification of candidates sits here.",
+     "Covers Singapore employment set-up until a Singapore seat exists; Singapore payroll runs through Finance or its local provider.",
+     "Line manager of People Operations."
+    ],
+    "flows": [
+     "hr",
+     "talent"
+    ]
+   },
+   {
+    "id": "po_all",
+    "role": "People Operations",
+    "holder": "Gina; all three countries today",
+    "house": "pc",
+    "layer": "extended",
+    "level": "L2",
+    "reportsTo": "HR Manager",
+    "status": "moved",
+    "today": {
+     "house": "pc",
+     "layer": "extended",
+     "reportsTo": "Head of People & Culture"
+    },
+    "about": "Contracts, renewals, terminations and the post-recruitment admin for all three countries, run from Thailand, where Gina is based. Owns the contract and role-change record that Finance's payroll reads; does not run payroll. One seat serving three countries, so HQ Extended for now. When the country layer forms, Gina is the Thailand seat and Malaysia and Singapore get their own."
+   },
+   {
+    "id": "po_sg",
+    "role": "People Operations, Singapore",
+    "holder": "Open seat, when needed",
+    "house": "pc",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "HR Manager",
+    "status": "trigger",
+    "today": null,
+    "about": "Singapore employment, passes, CPF and payroll inputs on the ground; the Country Manager's HR partner.",
+    "trigger": "The Singapore company employs staff (from January 2027) and the Singapore opening plan stands. Until then the HR Manager covers it with an outsourced payroll provider and Gina does the admin."
+   },
+   {
+    "id": "po_my",
+    "role": "People Operations, Malaysia",
+    "holder": "Open seat, when needed",
+    "house": "pc",
+    "layer": "country",
+    "level": "L2",
+    "reportsTo": "HR Manager",
+    "status": "trigger",
+    "today": null,
+    "about": "Malaysian contracts, statutory filings and branch admin on the ground, once the volume outgrows what Gina covers from Thailand.",
+    "trigger": "HQ headcount and Malaysian branch volume outgrow one person covering three countries. Gina then becomes the Thailand seat."
+   },
+   {
+    "id": "ec",
+    "role": "Education Council",
+    "holder": "Yan Sheng; advisors May Ooi, Peng Hooi",
+    "house": "edu",
+    "layer": "global",
+    "level": "L3",
+    "reportsTo": "COO",
+    "status": "current",
+    "today": {},
+    "about": "Head of Education for the group, above all three countries. Governs the coaching craft, sets the standard every country educator teaches to, certifies Edu-trainers, and runs the proficiency test that every coach hire must pass. Owns coach education seminars and workshops. Yan Sheng heads the Council and also holds the Malaysia country seat.",
+    "duties": [
+     "One country Head of Education per country reports here: Malaysia (Yan Sheng, dual hat), Singapore (Andrew Tan from January 2027), Thailand (open, target set)."
+    ],
+    "flows": [
+     "talent",
+     "events"
+    ]
+   },
+   {
+    "id": "hoe_my",
+    "role": "Head of Education, Malaysia",
+    "holder": "Yan Sheng (also heads the Education Council)",
+    "house": "edu",
+    "layer": "country",
+    "level": "L3",
+    "reportsTo": "Education Council",
+    "status": "current",
+    "today": {},
+    "about": "Mentors coaches and develops Edu-trainers in Malaysia, with the Malaysia Country Manager directing on local matters. Held today by Yan Sheng on a second hat beside the Education Council."
+   },
+   {
+    "id": "hoe_sg",
+    "role": "Head of Education, Singapore",
+    "holder": "Andrew Tan, from January 2027",
+    "house": "edu",
+    "layer": "country",
+    "level": "L3",
+    "reportsTo": "Education Council (to be confirmed)",
+    "status": "new",
+    "today": null,
+    "about": "Mentors coaches and develops Edu-trainers in Singapore, with the Singapore Country Manager directing on local matters."
+   },
+   {
+    "id": "hoe_th",
+    "role": "Head of Education, Thailand",
+    "holder": "Open seat",
+    "house": "edu",
+    "layer": "country",
+    "level": "L3",
+    "reportsTo": "Education Council",
+    "status": "new",
+    "today": null,
+    "about": "Mentors coaches and develops Edu-trainers in Thailand, with the Thailand Country Manager directing on local matters. Teaches to the Council's standard in Thai.",
+    "trigger": "Target: appointed alongside the Country Manager, Thailand, before the first 2027 opening in Thailand. An Edu-trainer already in Thailand who earns Edu-pioneer status is the first candidate."
+   },
+   {
+    "id": "et",
+    "role": "Edu-trainers",
+    "holder": "Per branch",
+    "house": "edu",
+    "layer": "branch",
+    "level": "L2",
+    "reportsTo": "Education Council; Branch Manager on branch matters",
+    "status": "current",
+    "today": {},
+    "about": "Two hats, each with one boss: educating coaches (Education Council) and coaching clients plus branch duties (Branch Manager). The same pattern every country specialist follows."
+   }
+  ];
+  const FLOWS = [
+   {
+    "id": "layers",
+    "name": "The four layers",
+    "title": "The four layers, and the two rules that make them reporting lines",
+    "why": "Each layer says how far a seat's work reaches: the whole company, every country from HQ, one country, or one branch. A seat sits in one layer of one house and reports up its own house.",
+    "layers": true,
+    "rules": [
+     "A person on the ground in a country reports up their own house, not to the Country Manager. The country Talent Acquisition person reports to the Talent Acquisition Lead; the Country Manager directs them on local matters, the same way the Branch Manager directs the Edu-trainer based in the branch.",
+     "Management House is the one exception: there the country layer is the line itself, because the Country Manager owns the country's results.",
+     "HQ Global is the leadership layer: the CEO, the COO and the heads of house.",
+     "The layers map onto the Growth Map: HQ Global is L4, HQ Extended is L3 and L2, country specialists are L2, and the branch is L1 and L2. Country Managers sit at L4.",
+     "A house adds a country seat when a written trigger is met (volume, language, or local law), never by feel. For every HQ house, Malaysia's country layer is HQ itself."
+    ]
+   },
+   {
+    "id": "opening",
+    "name": "Opening a branch",
+    "title": "Opening a branch: one requisition, one owner per step",
+    "why": "Expansion brings the pieces of an opening together; it does not own all of them. It raises one dated requisition; each service function delivers its part against it; each is accountable for its own input and Expansion for the opening date.",
+    "steps": [
+     [
+      "Expansion",
+      "Names the site, the opening date, the capital need and the coaches needed by date, in one requisition. Management co-signs the site."
+     ],
+     [
+      "Finance",
+      "Sizes and approves the capital under the Approval Limits Policy."
+     ],
+     [
+      "Investor Relations",
+      "Raises the capital by the requisition date (see Raising capital)."
+     ],
+     [
+      "Management",
+      "Appoints the Branch Manager for the new location from the ready managers and names the successor at the branch they leave. The manager stays under the Country Manager throughout."
+     ],
+     [
+      "Talent Acquisition",
+      "Delivers coaches who have passed the gates and signed, by the requisition date (see Hiring coaches)."
+     ],
+     [
+      "Procurement & Site Setup",
+      "Runs the tenancy: negotiates the terms, Finance checks the commitment, a director signs for the entity. Then fit-out and procurement to the launch calendar. The Branch Manager never signs."
+     ],
+     [
+      "Opening Project Lead",
+      "Keeps the calendar and the stage gates, chases every owner, reports status weekly, escalates slips to the Head of Expansion. Until the seat exists, the Head of Expansion does this."
+     ],
+     [
+      "Management",
+      "Opens the branch. Pre-launch sales and the first clients sit with the appointed Branch Manager and the Country Manager. Expansion's accountability ends on opening day."
+     ]
+    ],
+    "rules": [
+     "One owner per step. Expansion is accountable for opening on time; each service function for its input being in place by the date.",
+     "Every requisition carries a date. A missed date is the service function's miss, not Expansion's.",
+     "The appointed Branch Manager keeps the same line and the same pay throughout the opening. Branch Pioneer is a status, not a seat.",
+     "Signing authority follows the entity and the Approval Limits Policy, not the opening: Setup runs the tenancy process, Finance checks it, a director signs, the manager walks the unit.",
+     "The sister company Tribuo can use the same chain on request, under a service agreement written when the first request arrives; MOVE's requisitions come first."
+    ]
+   },
+   {
+    "id": "capital",
+    "name": "Raising capital",
+    "title": "Raising capital: the Investor Relations chain",
+    "why": "Investor Relations is front-facing and runs the investor relationship for the life of the branch. Finance supplies the numbers and the controls. Expansion says what is needed and by when.",
+    "steps": [
+     [
+      "Expansion",
+      "Names the site, the opening date and the capital need in the requisition."
+     ],
+     [
+      "Finance",
+      "Sizes and approves the capital under the Approval Limits Policy; tells Investor Relations the instrument, the entity and the controls, including who may invest and from where."
+     ],
+     [
+      "Investor Relations",
+      "Raises it: finds, qualifies, pitches and closes investors, with the Head of Expansion alongside on the pitch."
+     ],
+     [
+      "Finance",
+      "Incorporates, receives funds, issues shares and keeps the register."
+     ],
+     [
+      "Investor Relations",
+      "Keeps the investor for the life of the branch: reporting, studio tours, investor events and changes of stake, with Finance supplying the numbers on a fixed date each month."
+     ]
+    ],
+    "rules": [
+     "Investor Relations is accountable for the capital being in place by the requisition date, and for investor retention afterwards.",
+     "Finance is accountable for the numbers and the controls, and keeps capital approval.",
+     "Expansion is accountable for the opening.",
+     "Any new share class or instrument is a board matter, approved by the CEO."
+    ]
+   },
+   {
+    "id": "talent",
+    "name": "Hiring coaches",
+    "title": "Hiring coaches: Talent Acquisition works like an agency",
+    "why": "Talent Acquisition sits under Expansion, its largest customer, and is measured like an agency: hires who pass the gates and sign, against requests, by date. The gates stay where they are, so the quality of a hire keeps its owners.",
+    "steps": [
+     [
+      "Expansion or Management",
+      "Raises a headcount request: branch, role, how many, by when."
+     ],
+     [
+      "Talent Acquisition",
+      "Finds candidates: campaigns, ads, social media, partnerships, and career days with country people or coach-contractors on the ground."
+     ],
+     [
+      "People & Culture (HR Manager)",
+      "Pre-qualification: the call, the ratings, continue or stop."
+     ],
+     [
+      "Education",
+      "Coaching proficiency test, pass or fail."
+     ],
+     [
+      "Branch Manager",
+      "Manager interview and the hiring decision for the branch."
+     ],
+     [
+      "People & Culture (HR Manager)",
+      "From the signed offer onward: contract, onboarding, probation, pay set-up."
+     ],
+     [
+      "Talent Acquisition",
+      "Refill: a hire who leaves inside probation is replaced without counting again."
+     ]
+    ],
+    "rules": [
+     "Talent Acquisition's number: hires who passed the gates and signed by the request date. People & Culture's number: hires still in place at six months.",
+     "The hand-over point between Talent Acquisition and HR is the signed offer.",
+     "Marketing supports the sourcing campaigns as a service.",
+     "The sister company Tribuo is served on request under a service agreement, MOVE first."
+    ]
+   },
+   {
+    "id": "hr",
+    "name": "HR in three tiers",
+    "title": "People & Culture: global, HQ Extended, country",
+    "why": "The HR lifecycle gets one owner at HQ Extended, the HR Manager, with People Operations doing the work in each country.",
+    "steps": [
+     [
+      "Head of People & Culture (Jamie)",
+      "Global: people and development, the band table, the targets. Sets targets, approves strategy, makes the key decisions."
+     ],
+     [
+      "HR Manager",
+      "HQ Extended: the employee lifecycle from signed offer onward, statutory compliance in all three countries, passes, policies, business owner of the Talent module."
+     ],
+     [
+      "People Operations (Gina)",
+      "HQ Extended today: contracts, renewals, terminations and admin for all three countries, run from Thailand, under the HR Manager. The Thailand seat when the country layer forms."
+     ],
+     [
+      "People Operations, Singapore (when needed)",
+      "Country: employment, passes, CPF and payroll inputs once the Singapore company employs staff; outsourced payroll under the HR Manager until then."
+     ],
+     [
+      "People Operations, Malaysia (when needed)",
+      "Country: once HQ headcount and Malaysian branch volume outgrow one person covering three countries."
+     ]
+    ],
+    "rules": [
+     "The HR Manager owns the process and the compliance; People Operations does the work in a country. Country People Operations report to the HR Manager; the Country Manager is their customer.",
+     "Payroll stays with Finance, run centrally for all three countries from the contract and role-change record People Operations keeps. Every role change is a dated, approved entry before it reaches payroll. Finance does not split by country for this; local statutory filing goes through Finance or its local provider.",
+     "Talent Acquisition sits in Expansion; People & Culture keeps pre-qualification and everything after the signed offer."
+    ]
+   },
+   {
+    "id": "enquiries",
+    "name": "Enquiries (Chatwoot)",
+    "title": "Enquiries: one operations owner, answers owned by type",
+    "why": "Enquiries arrive on WhatsApp, Instagram, Facebook and LINE into Chatwoot, where Captain answers first and hands over to a person when needed. Many houses own an enquiry type. One seat owns the system and the routing; each owner keeps the correctness of their own replies; Technology keeps the platform.",
+    "steps": [
+     [
+      "Enquiry and Events Operations Lead",
+      "Keeps the routing table (which enquiry type goes to which owner), the response rule across every inbox and the check that it is met, the automation and Captain content, the change log and the monthly measures. Every change to Captain goes through this seat."
+     ],
+     [
+      "Country Managers",
+      "Own and answer new enquiries, trials and the Kickstarter, health and injury questions (consulting Education), existing clients (Branch Managers day to day), complaints, and everything else, each in their country."
+     ],
+     [
+      "Marketing (Clarrine)",
+      "Owns business and partnership enquiries, in her own inbox."
+     ],
+     [
+      "Talent Acquisition",
+      "Owns jobs and careers enquiries."
+     ],
+     [
+      "Investor Relations",
+      "Owns investor enquiries."
+     ],
+     [
+      "Technology & Data (Elvis)",
+      "Platform owner. Builds and applies what the operations lead specifies through the change request form; owners never go to Technology direct."
+     ]
+    ],
+    "rules": [
+     "Owners own the correctness of their type; the operations lead owns routing, attendance and automation; the COO decides only when two heads cannot settle it.",
+     "Every change arrives through the Captain change request form and is logged."
+    ]
+   },
+   {
+    "id": "events",
+    "name": "Events and seminars",
+    "title": "Events: the house that wants it owns the content, one seat runs the mechanics",
+    "why": "A seminar, a career day, an open day or a coach workshop each belongs to the house whose purpose it serves. One operations seat runs the mechanics for all of them, and the country team executes on the day.",
+    "steps": [
+     [
+      "Requesting house",
+      "Brings the brief: purpose, audience, date wanted, speakers, content, and what a good outcome looks like. Lead-generating events: Marketing. Client and community events: Management through the Country Manager. Career days: Talent Acquisition. Coach education: Education. Investor meets and open days: Investor Relations. Press: Marketing, with the CEO as spokesperson."
+     ],
+     [
+      "Enquiry and Events Operations Lead",
+      "Turns the brief into the plan: date on the one calendar, venue, seating, AV and materials from the playbook, the registration link with the consent gate, the Chatwoot set-up for the event's enquiries, the run-sheet and roles on the day. Reports attendance and outcome afterwards."
+     ],
+     [
+      "On-the-day lead",
+      "A named person from the country team runs the run-sheet on site: the Country Manager's team for client and community events, Talent Acquisition's country person for a career day, the Edu-trainer for a coach workshop. The operations seat briefs them the day before and is on call during the event."
+     ],
+     [
+      "Afterwards",
+      "The on-the-day lead sends attendance and notes; the operations seat reports attendance and outcome to the requesting house within three days."
+     ]
+    ],
+    "rules": [
+     "The registration form is the gate for every event: it carries the consent clauses, so HQ does not need to know in advance and nobody is photographed or posted without consent.",
+     "The operations seat plans; the country team hosts. Three events in three countries on one weekend are three run-sheets and three on-the-day leads, not three flights.",
+     "The operations seat is measured on the mechanics (date, budget, registration, report); the requesting house is measured on the outcome (leads, hires, certified coaches).",
+     "At today's volume the events operations owner is the same seat as the enquiry one; it splits when events run weekly in more than one country."
+    ]
+   }
+  ];
+  const KPI = {
+   "ceo": [
+    "The company's shared goal: more active coaches with a healthy typical income, while leaders keep tiering up.",
+    "Group profit and the value of the company, per the board's plan.",
+    "The growth plan delivered: studios and countries opened on the plan."
+   ],
+   "coo": [
+    "Group operating profit: every house hits its standing goal within its budget.",
+    "Every capability has one named owner and every hand-off on this page is written and followed.",
+    "Heads of house in seat and a successor named for each."
+   ],
+   "ba": [
+    "Each project delivered on its date with a named owner who has taken it over, and the fix still holding three months later.",
+    "Nothing held under the caretaker rule for more than 60 days."
+   ],
+   "ir": [
+    "Capital raised per year against the opening plan, at the terms Finance set.",
+    "Investor retention: every investor reported to on the fixed date each month, no investor lost to a service failure, and repeat investment from existing investors.",
+    "Capital in place by the date in each requisition."
+   ],
+   "ir_c": [
+    "Capital raised in that country against its opening plan, by the requisition dates.",
+    "Investor meets and tours in that country run to the lead's standard."
+   ],
+   "hom": [
+    "Revenue, client retention and profit per branch across all countries, against plan.",
+    "Active coaches per branch and their typical income.",
+    "Conversion and renewal across all countries.",
+    "Every new location handed over on opening day with a manager and a founding team in place."
+   ],
+   "eeo": [
+    "Response rule met: the share of enquiries answered within the rule, across every inbox and country.",
+    "Routing accuracy: the share of enquiries that reach the right owner first time; Captain's handled share rising without complaints rising.",
+    "Events delivered to brief: on the date, within budget, every participant registered through the gate, report within three days.",
+    "Cost per enquiry handled and cost per event, falling as the playbooks mature."
+   ],
+   "cm_my": [
+    "Revenue, client retention and profit of the Malaysian branches against plan.",
+    "Conversion, renewal and active coaches per branch in Malaysia.",
+    "New enquiries for Malaysia answered within the response rule and converted to consultations."
+   ],
+   "cm_sg": [
+    "Revenue, client retention and profit of the Singapore branches against plan.",
+    "Conversion, renewal and active coaches per branch in Singapore.",
+    "New enquiries for Singapore answered within the response rule and converted to consultations."
+   ],
+   "cm_th": [
+    "Revenue, client retention and profit of the Thai branches against plan.",
+    "Conversion, renewal and active coaches per branch in Thailand.",
+    "New enquiries for Thailand answered within the response rule and converted to consultations."
+   ],
+   "bm": [
+    "The branch's revenue, sessions, conversion and renewals against plan.",
+    "Coaches in the branch still in place at six months, and their typical income.",
+    "Client satisfaction and complaints in the branch."
+   ],
+   "tr": [
+    "Sessions delivered, renewals and referrals from their own clients.",
+    "Their own tier progression on the Growth Map."
+   ],
+   "hoe": [
+    "Studios opened per year, each on its requisition date and within its opening budget.",
+    "Each new site reaching its first-year revenue and payback targets.",
+    "A pipeline of sites and countries at least two openings ahead."
+   ],
+   "ta": [
+    "Hires who passed the gates and signed, against each headcount request, by its date.",
+    "Time to hire and cost per hire, by country.",
+    "Refills delivered within the agreed time when a hire leaves inside probation."
+   ],
+   "setup": [
+    "Each site ready on the launch calendar date and within the opening budget.",
+    "Fit-out cost per site and procurement savings against budget.",
+    "Tenancy signed by the calendar date."
+   ],
+   "opl": [
+    "Openings on their date.",
+    "No surprise slips: every gate reported weekly and every slip escalated before it moves the opening date."
+   ],
+   "ta_c": [
+    "Gate-passed, signed hires for that country, by the request date.",
+    "Candidate pool in that country ahead of the next opening."
+   ],
+   "setup_c": [
+    "Sites in that country ready on the calendar date and within budget."
+   ],
+   "cto": [
+    "Platforms available, secure and backed up; personal data handled to the standard.",
+    "Data in the Client Hub and Business OS complete and correct, so every house can trust its numbers.",
+    "Each build delivered to the owner's specification on the agreed date, within the technology budget."
+   ],
+   "pe": [
+    "Builds delivered to specification on the agreed date, with defects found before release."
+   ],
+   "hmk": [
+    "Qualified leads per country at the agreed cost per lead.",
+    "Brand reach and reputation: following, press, and client referrals attributed to brand.",
+    "Marketing spend within budget and returning the agreed revenue per ringgit."
+   ],
+   "mm": [
+    "Business and partnership enquiries answered within the response rule and partnerships closed.",
+    "Revenue from partnerships and corporate clients."
+   ],
+   "cl": [
+    "Creative delivered to brief and on date.",
+    "Content performance against the agreed benchmarks."
+   ],
+   "ads": [
+    "Cost per lead and lead volume from paid channels, per country.",
+    "Paid spend within budget."
+   ],
+   "agencies": [
+    "Deliverables to brief, on date, at the agreed cost."
+   ],
+   "hof": [
+    "Profit and cash of the group, each country company and each branch company, against budget.",
+    "Clean books: month-end close on time, audit without findings, statutory filings and taxes on time in all three countries.",
+    "Capital approved and funds received by the requisition date; shares issued and the register current.",
+    "Payroll paid correctly and on time; investor numbers delivered on the fixed date each month."
+   ],
+   "fm": [
+    "Month-end close, management accounts and investor numbers on the fixed date.",
+    "Receivables collected and payables paid to terms."
+   ],
+   "fa": [
+    "Transactions recorded completely and on time."
+   ],
+   "hpc": [
+    "Annual coach retention against the target, and hires still in place at six months.",
+    "Leaders tiered up per the Growth Map each quarter, with a successor named for every head of house.",
+    "Coach satisfaction and the leadership programme and MoveU delivered to plan."
+   ],
+   "hrm": [
+    "Every contract signed before the start date; every probation review done on time.",
+    "Zero statutory misses; zero payroll corrections caused by the contract and role-change record.",
+    "Passes and permits approved first time."
+   ],
+   "po_all": [
+    "Contracts issued within the agreed days of a signed offer; renewals done before expiry; record updated the same day as any change."
+   ],
+   "po_sg": [
+    "The same, for Singapore."
+   ],
+   "po_my": [
+    "The same, for Malaysia."
+   ],
+   "ec": [
+    "Coaching quality across branches, as the proficiency test, client results and client feedback show it.",
+    "Coaches certified and Edu-trainers certified per branch, and coaches moving up the tiers.",
+    "Every hire tested within the agreed days of the request."
+   ],
+   "hoe_my": [
+    "Coaching quality in Malaysia; Edu-trainers developed and coaches mentored there."
+   ],
+   "hoe_sg": [
+    "Coaching quality in Singapore; Edu-trainers developed and coaches mentored there."
+   ],
+   "hoe_th": [
+    "Coaching quality in Thailand; Edu-trainers developed and coaches mentored there."
+   ],
+   "et": [
+    "Coaches educated in the branch and the quality of their coaching.",
+    "Their own sessions and renewals as a coach."
+   ]
+  };
+  const CONFLICTS = [
+   [
+    "A coach hire",
+    "Talent Acquisition: the hire passed the gates and signed by the request date.",
+    "People & Culture: the hire is still in place at six months.",
+    "Talent Acquisition cannot win by pushing weak candidates through, because the gates belong to P&C, Education and the Branch Manager, and a hire who leaves inside probation has to be refilled without counting again."
+   ],
+   [
+    "Capital for an opening",
+    "Investor Relations: the money is in place by the requisition date.",
+    "Finance: the amount is right, the instrument and controls are right, the register is current.",
+    "The person who raises the money never sets the number; Finance sizes and approves it first."
+   ],
+   [
+    "A new location",
+    "Expansion: opened on the requisition date.",
+    "Management: the branch performs after opening day.",
+    "Management co-signs the site and appoints the manager, so it cannot be handed a location it did not agree to."
+   ],
+   [
+    "A new enquiry",
+    "Enquiry and Events Operations: answered within the response rule and routed to the right owner.",
+    "Country Manager: converted to a consultation and a client.",
+    "The operations seat owns speed and routing; the Country Manager owns the answer and the outcome. Neither can meet its number by taking the other's."
+   ],
+   [
+    "An event",
+    "Enquiry and Events Operations: delivered to brief, on the date, registered through the gate, reported within three days.",
+    "The requesting house: the outcome the event was for (leads for Marketing, hires for Talent Acquisition, certified coaches for Education).",
+    "The operations seat is measured on the mechanics, never on the outcome, so a well-run event with a weak programme shows up where it belongs."
+   ],
+   [
+    "A lead",
+    "Marketing: qualified leads per country at the agreed cost.",
+    "Country Manager: leads converted.",
+    "Marketing is measured to the hand-over point, Management from it. The response rule is the operations seat's, so a slow reply does not count against Marketing."
+   ],
+   [
+    "Payroll",
+    "People Operations and the HR Manager: the record is right and updated the same day.",
+    "Finance: paid correctly and on time.",
+    "A payroll error is traced to the record or to the run, so each owner answers for their own part."
+   ],
+   [
+    "A coach's performance",
+    "Education: the coaching craft, certification and quality.",
+    "Branch Manager: sessions, renewals and conduct in the branch.",
+    "Two hats, each with one boss. Education does not task branch work; Management asks for education through Education."
+   ]
+  ];
+  const GLOSSARY = [
+   [
+    "House",
+    "A function led by a head who reports to the COO: Management, Expansion, Technology & Data, Marketing, Finance, People & Culture, Education."
+   ],
+   [
+    "Layer",
+    "How far a seat's work reaches: HQ Global (the whole company), HQ Extended (every country from HQ), Country (one country, on the ground), Branch (one location)."
+   ],
+   [
+    "Seat",
+    "A position on the chart. A seat can be filled, open, or added later when its trigger is met."
+   ],
+   [
+    "Trigger",
+    "The written condition for adding a seat, such as a volume, a date, or a country having its own Country Manager. Seats are added when the trigger is met, not before."
+   ],
+   [
+    "Requisition",
+    "Expansion's dated request for an opening: the site, the opening date, the capital need, and the coaches needed by when. Each service function delivers its part against it."
+   ],
+   [
+    "Headcount request",
+    "Management's or Expansion's request to Talent Acquisition: branch, role, how many, by when."
+   ],
+   [
+    "On-the-day lead",
+    "The named person from the country team who runs an event on site from the run-sheet the operations seat prepared."
+   ],
+   [
+    "Owns the number",
+    "Every seat has one or two measures it alone answers for. The Measures tab lists them and shows the split where two seats touch the same outcome."
+   ],
+   [
+    "Hiring gates",
+    "The three checks every coach hire passes: People & Culture pre-qualification, Education's proficiency test, and the Branch Manager's interview and decision."
+   ],
+   [
+    "Branch Pioneer",
+    "A status a Branch Manager earns, which lets them open a new location. It is not a seat and does not change who they report to."
+   ],
+   [
+    "Growth Map",
+    "MOVE's levels: L1 Coach, L2 Specialist, L3 Leadership, L4 Builder. Every seat has a level."
+   ],
+   [
+    "Captain",
+    "The assistant inside Chatwoot that answers enquiries first and hands over to a person when needed."
+   ],
+   [
+    "Chatwoot",
+    "The shared inbox where WhatsApp, Instagram, Facebook and LINE enquiries arrive."
+   ],
+   [
+    "Approval Limits Policy",
+    "The rule that says who can approve a spend or a commitment of a given size."
+   ],
+   [
+    "Country specialist",
+    "A person on the ground in one country who belongs to an HQ house (for example country Talent Acquisition). They report up their house; the Country Manager directs them on local matters."
+   ],
+   [
+    "Tribuo",
+    "A sister company in Melaka running group classes. Investor Relations and Talent Acquisition can serve it on request under a service agreement, with MOVE's needs first."
+   ]
+  ];
+  const HIRING = [];
+  const RULINGS = [];
+  const BOTTLENECKS = [];
+  const ALTERNATIVES = [];
+  // DATA END
+  // ---------- state ----------
+  let mode = 'target';
+  let selected = null;
+  let overrides = {};
+  if (!TEAM) { try { overrides = JSON.parse(localStorage.getItem('move-structure-whatif') || '{}') || {}; } catch (e) { overrides = {}; } }
+  function saveOverrides() { if (TEAM) return; try { localStorage.setItem('move-structure-whatif', JSON.stringify(overrides)); } catch (e) {} }
+
+  const VISIBLE_SEATS = SEATS.filter(s => !(TEAM && s.internal));
+  const byId = Object.fromEntries(SEATS.map(s => [s, s]).map(([s]) => [s.id, s]));
+  const houseName = id => (HOUSES.find(h => h.id === id) || {}).name || id;
+  const layerName = id => (LAYERS.find(l => l.id === id) || {}).name || id;
+  const items = list => (list || []).filter(x => !(TEAM && typeof x === 'object' && x.internal)).map(x => typeof x === 'string' ? x : x.t);
+  const holderOf = s => (TEAM && s.teamHolder) ? s.teamHolder : s.holder;
+
+  function placement(seat) {
+    if (mode === 'today') {
+      if (seat.today === null) return null;
+      return { house: seat.today.house || seat.house, layer: seat.today.layer || seat.layer, reportsTo: seat.today.reportsTo || seat.reportsTo, status: seat.status === 'moved' || seat.status === 'lapses' ? 'current' : seat.status, whatif: false };
+    }
+    const o = overrides[seat.id] || {};
+    return { house: o.house || seat.house, layer: o.layer || seat.layer, reportsTo: o.reportsTo || seat.reportsTo, status: seat.status, whatif: !!(o.house || o.layer || o.reportsTo) };
+  }
+
+  function statusChip(p, seat) {
+    const chips = [];
+    if (seat.level) chips.push(`<span class="chip lvl">${seat.level.split(' ')[0]}</span>`);
+    if (p.whatif) chips.push('<span class="chip whatif">What-if</span>');
+    else if (p.status === 'new') chips.push('<span class="chip new">New</span>');
+    else if (p.status === 'moved') chips.push('<span class="chip moved">Moved</span>');
+    else if (p.status === 'trigger') chips.push('<span class="chip trigger">When needed</span>');
+    else if (p.status === 'lapses') chips.push('<span class="chip">Lapses</span>');
+    else if (p.status === 'external') chips.push('<span class="chip">Outsourced</span>');
+    return chips.join('');
+  }
+
+  function seatButton(seat, p) {
+    const cls = ['seat', p.whatif ? 'whatif' : p.status, selected === seat.id ? 'selected' : ''].join(' ');
+    const h = holderOf(seat);
+    const openHolder = /open seat|to be confirmed/i.test(h);
+    return `<button class="${cls}" data-seat="${seat.id}" type="button"><span class="r">${seat.role}</span><span class="h ${openHolder ? 'open' : ''}">${h}</span><span class="m">${statusChip(p, seat)}</span></button>`;
+  }
+
+  function renderGrid() {
+    const grid = document.getElementById('grid');
+    grid.style.setProperty('--cols', HOUSES.length);
+    let html = '<div class="corner"></div>';
+    HOUSES.forEach(h => { html += `<div class="hh">${h.name}<small>${h.sub}</small></div>`; });
+    LAYERS.forEach(l => {
+      html += `<div class="lh"><b>${l.name}</b><small>${l.sub}</small></div>`;
+      HOUSES.forEach(h => {
+        const seats = VISIBLE_SEATS.map(s => [s, placement(s)]).filter(([s, p]) => p && p.house === h.id && p.layer === l.id);
+        html += `<div class="cell ${seats.length ? '' : 'empty'}">${seats.map(([s, p]) => seatButton(s, p)).join('')}</div>`;
+      });
+    });
+    grid.innerHTML = html;
+
+    const stack = document.getElementById('stack');
+    let sh = '';
+    HOUSES.forEach(h => {
+      sh += `<div class="house"><h3>${h.name}<small>${h.sub}</small></h3>`;
+      LAYERS.forEach(l => {
+        const seats = VISIBLE_SEATS.map(s => [s, placement(s)]).filter(([s, p]) => p && p.house === h.id && p.layer === l.id);
+        if (!seats.length) return;
+        sh += `<div class="lay"><div class="ll">${l.name}</div><div class="seats">${seats.map(([s, p]) => seatButton(s, p)).join('')}</div></div>`;
+      });
+      sh += '</div>';
+    });
+    stack.innerHTML = sh;
+
+    const wn = document.getElementById('whatsnew');
+    if (mode === 'target') {
+      const list = VISIBLE_SEATS.map(s => [s, placement(s)]).filter(([s, p]) => p && (p.status === 'new' || p.status === 'moved'));
+      wn.innerHTML = '<span>New and changed seats:</span>' + list.map(([s, p]) => `<button class="wn ${p.status}" type="button" data-seat="${s.id}">${s.role}</button>`).join('');
+    } else wn.innerHTML = '';
+
+    document.getElementById('structureLede').textContent = mode === 'today'
+      ? 'Where every seat sits today, on the four layers. Switch to Target to see where we are going.'
+      : 'Where every seat will sit. Rows are the four layers, columns are the houses. A seat reports up its own column, except in Management House, where the country layer is the line itself.';
+  }
+
+  function openSeat(id) {
+    const seat = byId[id];
+    if (!seat || (TEAM && seat.internal)) return;
+    const p = placement(seat) || { house: seat.house, layer: seat.layer, reportsTo: seat.reportsTo, status: seat.status, whatif: false };
+    selected = id;
+    renderGrid();
+    document.getElementById('dTitle').textContent = seat.role;
+    document.getElementById('dWho').textContent = holderOf(seat);
+    let b = '';
+    b += `<dl class="kv"><dt>House</dt><dd>${houseName(p.house)}</dd><dt>Layer</dt><dd>${layerName(p.layer)}</dd><dt>Reports to</dt><dd>${p.reportsTo}</dd>${seat.level ? `<dt>Growth Map</dt><dd>${seat.level}</dd>` : ''}</dl>`;
+    if (mode === 'target' && seat.today && (seat.today.house || seat.today.layer || seat.today.reportsTo)) {
+      b += `<div class="note green"><b>Today:</b> ${houseName(seat.today.house || seat.house)}, ${layerName(seat.today.layer || seat.layer)}, reporting to ${seat.today.reportsTo || seat.reportsTo}.</div>`;
+    }
+    if (mode === 'target' && seat.today === null) b += `<div class="note"><b>Does not exist today.</b> ${seat.status === 'trigger' ? 'Added when its trigger is met.' : 'A new seat in the target structure.'}</div>`;
+    if (mode === 'today' && seat.status === 'moved') b += `<div class="note green"><b>In the target:</b> ${houseName(seat.house)}, ${layerName(seat.layer)}, reporting to ${seat.reportsTo}.</div>`;
+    if (seat.about) b += `<div class="sec"><p style="margin:0">${seat.about}</p></div>`;
+    const duties = items(seat.duties);
+    if (duties.length) b += `<div class="sec"><h4>What the seat does</h4><ul>${duties.map(d => `<li>${d}</li>`).join('')}</ul></div>`;
+    const kpis = KPI[seat.id] || [];
+    if (kpis.length) b += `<div class="sec"><h4>Owns the number for</h4><ul class="kpi-list">${kpis.map(k => `<li>${k}</li>`).join('')}</ul></div>`;
+    if (seat.scale) b += `<div class="sec"><h4>When it is in three places at once</h4><p style="margin:0">${seat.scale}</p></div>`;
+    if (seat.career) b += `<div class="sec"><h4>Career path</h4><p style="margin:0">${seat.career}</p></div>`;
+    if (seat.caretaker) b += `<div class="sec"><h4>Caretaker rule</h4><p style="margin:0">${seat.caretaker}</p></div>`;
+    if (seat.trigger) b += `<div class="sec"><h4>Trigger</h4><p style="margin:0">${seat.trigger}</p></div>`;
+    if (seat.country) b += `<div class="sec"><h4>Country layer</h4><p style="margin:0">${seat.country}</p></div>`;
+    if (seat.change && !TEAM) b += `<div class="note internal"><b>Leadership note:</b> ${seat.change}</div>`;
+    if (seat.flows) b += `<div class="sec"><h4>How it works</h4>${seat.flows.map(f => { const fl = FLOWS.find(x => x.id === f); return `<button class="flowlink" data-flow="${f}" type="button">${fl.name}</button>`; }).join('')}</div>`;
+    if (!TEAM && mode === 'target' && seat.status !== 'external') {
+      const o = overrides[id] || {};
+      const reportOptions = ['Board', 'CEO', 'COO', ...SEATS.filter(s => s.id !== id && (s.layer === 'global' || s.layer === 'extended')).map(s => s.role)];
+      b += `<div class="whatif-box"><h4>What if</h4>
+        <label>House <select id="wiHouse">${HOUSES.map(h => `<option value="${h.id}" ${(o.house || seat.house) === h.id ? 'selected' : ''}>${h.name}</option>`).join('')}</select></label>
+        <label>Layer <select id="wiLayer">${LAYERS.map(l => `<option value="${l.id}" ${(o.layer || seat.layer) === l.id ? 'selected' : ''}>${l.name}</option>`).join('')}</select></label>
+        <label>Reports to <select id="wiReports">${[...new Set([p.reportsTo, ...reportOptions])].map(r => `<option value="${r}" ${(o.reportsTo || seat.reportsTo) === r ? 'selected' : ''}>${r}</option>`).join('')}</select></label>
+        <div class="row" style="margin-top:8px"><button class="btn primary small" id="wiApply" type="button">Move it</button><button class="btn small" id="wiClear" type="button" ${p.whatif ? '' : 'disabled'}>Put it back</button></div>
+        <p style="margin:8px 0 0;font-size:12px;color:var(--muted)">Changes stay in this browser only. Use Copy changes at the bottom to send them back.</p></div>`;
+    }
+    document.getElementById('dBody').innerHTML = b;
+    const dr = document.getElementById('drawer');
+    dr.classList.add('open'); dr.setAttribute('aria-hidden', 'false');
+    const apply = document.getElementById('wiApply');
+    if (apply) {
+      apply.addEventListener('click', () => {
+        const h = document.getElementById('wiHouse').value, l = document.getElementById('wiLayer').value, r = document.getElementById('wiReports').value;
+        const o = {};
+        if (h !== seat.house) o.house = h;
+        if (l !== seat.layer) o.layer = l;
+        if (r !== seat.reportsTo) o.reportsTo = r;
+        if (Object.keys(o).length) overrides[id] = o; else delete overrides[id];
+        saveOverrides(); renderChanges(); openSeat(id);
+      });
+      document.getElementById('wiClear').addEventListener('click', () => { delete overrides[id]; saveOverrides(); renderChanges(); openSeat(id); });
+    }
+  }
+
+  function closeDrawer() { selected = null; const dr = document.getElementById('drawer'); dr.classList.remove('open'); dr.setAttribute('aria-hidden', 'true'); renderGrid(); if (document.getElementById('view-orgchart').classList.contains('active')) renderOrgChart(); }
+
+  function changeLines() {
+    return Object.entries(overrides).map(([id, o]) => {
+      const s = byId[id]; if (!s) return null;
+      const parts = [];
+      if (o.house) parts.push(`to ${houseName(o.house)} (from ${houseName(s.house)})`);
+      if (o.layer) parts.push(`layer ${layerName(o.layer)} (from ${layerName(s.layer)})`);
+      if (o.reportsTo) parts.push(`reporting to ${o.reportsTo} (from ${s.reportsTo})`);
+      return `${s.role}: ${parts.join('; ')}`;
+    }).filter(Boolean);
+  }
+  function renderChanges() {
+    const lines = changeLines();
+    const bar = document.getElementById('changes');
+    bar.classList.toggle('on', !TEAM && lines.length > 0 && mode === 'target');
+    document.getElementById('changeList').innerHTML = `<b>${lines.length} what-if change${lines.length === 1 ? '' : 's'}</b>` + lines.map(l => `<div>${l}</div>`).join('');
+  }
+  function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 1800); }
+
+  // ---------- org chart: the same seats as a tree with reporting lines ----------
+  const REPORTS_TO_ID = { 'Board': null, 'CEO': 'ceo', 'COO': 'coo', 'Head of Management': 'hom', 'Head of Expansion': 'hoe', 'Head of People & Culture': 'hpc', 'Head of Technology & Data': 'cto', 'Head of Marketing': 'hmk', 'Head of Finance': 'hof', 'Finance Manager': 'fm', 'HR Manager': 'hrm', 'Talent Acquisition Lead': 'ta', 'Procurement & Site Setup Lead': 'setup', 'Investor Relations': 'ir', 'Education Council': 'ec', 'Country Manager': 'cm_my', 'Branch Manager': 'bm', 'Marketing seats at HQ': 'ads', 'Head of Education, Singapore': 'hoe_sg' };
+  function parentIdOf(seat, p) {
+    const key = (p.reportsTo || '').split(/[;(]/)[0].trim();
+    if (key in REPORTS_TO_ID) return REPORTS_TO_ID[key];
+    const byRole = SEATS.find(s => s.role === key); return byRole ? byRole.id : 'coo';
+  }
+  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'five openings planned in 2027', agencies: 'bought, not hired' };
+  let ocZoom = 1;
+  function renderOrgChart() {
+    const oc = document.getElementById('oc'); if (!oc) return;
+    const nodes = VISIBLE_SEATS.map(s => [s, placement(s)]).filter(([s, p]) => p);
+    const byIdP = Object.fromEntries(nodes.map(([s, p]) => [s.id, { s, p, parent: parentIdOf(s, p), kids: [] }]));
+    Object.values(byIdP).forEach(n => { if (n.parent && byIdP[n.parent]) byIdP[n.parent].kids.push(n.s.id); });
+    // seats with their own reports go last in a stack, so a nested group never sits between its siblings
+    Object.values(byIdP).forEach(n => { n.kids.sort((a, b) => (byIdP[a].kids.length ? 1 : 0) - (byIdP[b].kids.length ? 1 : 0)); });
+    const box = (id, depth, extra) => {
+      const n = byIdP[id]; const s = n.s; const p = n.p;
+      const h = holderOf(s); const openHolder = /open seat|to be confirmed/i.test(h);
+      const cls = ['ob', extra || '', depth ? 'd' + Math.min(depth, 4) : '', p.whatif ? 'moved' : p.status].join(' ');
+      const hat = OC_HATS[id] ? `<span class="hat">${OC_HATS[id]}</span>` : '';
+      return `<button class="${cls}" data-oc="${id}" data-parent="${n.parent || ''}" type="button"><span class="r">${s.role}</span><span class="h ${openHolder ? 'open' : ''}">${h}</span>${hat}<span class="m">${statusChip(p, s)}</span></button>`;
+    };
+    const stack = (id, depth) => byIdP[id].kids.map(k => box(k, depth) + stack(k, depth + 1)).join('');
+    const cooKids = (byIdP.coo ? byIdP.coo.kids : []).slice();
+    const order = ['mgmt', 'exp', 'tech', 'mkt', 'fin', 'pc', 'edu'];
+    const heads = cooKids.filter(k => byIdP[k].p.layer === 'global').sort((a, b) => order.indexOf(byIdP[a].p.house) - order.indexOf(byIdP[b].p.house));
+    const directs = cooKids.filter(k => byIdP[k].p.layer !== 'global');
+    let html = '<div class="octop">';
+    html += `<div class="ocrow">${box('ceo', 0, 'exec')}${(byIdP.ceo.kids.filter(k => k !== 'coo')).map(k => box(k, 0)).join('')}</div>`;
+    html += `<div class="ocrow">${box('coo', 0, 'exec')}</div>`;
+    html += '<div class="occols">';
+    heads.forEach(k => { const hs = HOUSES.find(h => h.id === byIdP[k].p.house); html += `<div class="occol"><div class="ochouse">${hs ? hs.name : ''}</div>${box(k, 0, 'head')}${stack(k, 1)}</div>`; });
+    if (directs.length) html += `<div class="occol"><div class="ochouse plain">Reports to the COO</div>${directs.map(k => box(k, 0) + stack(k, 1)).join('')}</div>`;
+    html += '</div></div><svg class="oclines" id="ocLines"></svg>';
+    oc.innerHTML = html;
+    document.getElementById('ocScale').style.transform = `scale(${ocZoom})`;
+    document.getElementById('ocScale').style.width = ocZoom < 1 ? (100 / ocZoom) + '%' : '';
+    requestAnimationFrame(drawOrgLines);
+  }
+  function drawOrgLines() {
+    const oc = document.getElementById('oc'); const svg = document.getElementById('ocLines'); if (!oc || !svg) return;
+    const base = oc.getBoundingClientRect(); const z = ocZoom;
+    const rect = el => { const r = el.getBoundingClientRect(); return { left: (r.left - base.left) / z, top: (r.top - base.top) / z, right: (r.right - base.left) / z, bottom: (r.bottom - base.top) / z, cx: (r.left + r.width / 2 - base.left) / z }; };
+    const boxes = [...oc.querySelectorAll('.ob')]; const byId = {}; boxes.forEach(b => { byId[b.dataset.oc] = b; });
+    svg.setAttribute('width', oc.scrollWidth); svg.setAttribute('height', oc.scrollHeight);
+    svg.setAttribute('viewBox', `0 0 ${oc.scrollWidth} ${oc.scrollHeight}`);
+    let d = '';
+    const path = (s, cls) => { d += `<path d="${s}" class="${cls || ''}"></path>`; };
+    // CEO to COO, and CEO to any other child in the top row
+    if (byId.ceo && byId.coo) { const a = rect(byId.ceo), b = rect(byId.coo); path(`M${a.cx} ${a.bottom} V${b.top}`); }
+    boxes.filter(b => b.dataset.parent === 'ceo' && b.dataset.oc !== 'coo').forEach(b => { const a = rect(byId.ceo), c = rect(b); const my = a.bottom + 10; path(`M${a.cx} ${a.bottom} V${my} H${c.cx} V${c.top}`); });
+    // COO to the column tops: a rail
+    const tops = [...oc.querySelectorAll('.occol')].map(col => col.querySelector('.ob')).filter(Boolean);
+    if (byId.coo && tops.length) {
+      const a = rect(byId.coo); const ys = a.bottom + 14; const xs = tops.map(t => rect(t).cx);
+      path(`M${a.cx} ${a.bottom} V${ys}`); path(`M${Math.min(...xs)} ${ys} H${Math.max(...xs)}`);
+      tops.forEach(t => { const c = rect(t); path(`M${c.cx} ${ys} V${c.top}`); });
+    }
+    // inside a column: elbow from the parent's left spine to each child
+    boxes.forEach(b => {
+      const pid = b.dataset.parent; if (!pid || pid === 'coo' || pid === 'ceo') return;
+      const pb = byId[pid]; if (!pb || pb.closest('.occol') !== b.closest('.occol')) return;
+      const a = rect(pb), c = rect(b); const x = a.left + 8; const my = c.top + 18;
+      path(`M${x} ${a.bottom} V${my} H${c.left}`, b.classList.contains('trigger') ? 'dashed' : '');
+    });
+    svg.innerHTML = d;
+  }
+  window.addEventListener('resize', () => { if (document.getElementById('view-orgchart').classList.contains('active')) drawOrgLines(); });
+  document.addEventListener('click', e => {
+    const zb = e.target.closest('[data-zoom]'); if (zb) { ocZoom = parseFloat(zb.dataset.zoom); renderOrgChart(); return; }
+    const ob = e.target.closest('.ob'); if (ob) { openSeat(ob.dataset.oc); setTimeout(drawOrgLines, 0); }
+  });
+
+  // ---------- flows ----------
+  let flow = 'layers';
+  function renderFlows() {
+    document.getElementById('flownav').innerHTML = FLOWS.map(f => `<button type="button" data-flow="${f.id}" aria-selected="${f.id === flow}">${f.name}</button>`).join('');
+    const f = FLOWS.find(x => x.id === flow);
+    let b = `<h2>${f.title}</h2><p class="why">${f.why}</p>`;
+    if (f.layers) {
+      b += '<div class="layers">' + LAYERS.map(l => {
+        const ex = { global: 'CEO, COO, the seven heads of house.', extended: 'Business Analyst, Investor Relations, HR Manager, People Operations (all countries today), Talent Acquisition Lead, Procurement & Site Setup, Opening Project Lead, Product Engineers, the Marketing seats, Finance Manager, Enquiry and Events Operations.', country: 'Country Managers (the line in Management), country Heads of Education (Malaysia, Singapore, Thailand), People Operations per country when needed, country Talent Acquisition, Setup and Investor Relations, local agencies.', branch: 'Branch Managers (Branch Pioneer is a status one of them carries), Trainers, Edu-trainers.' }[l.id];
+        return `<div class="lc"><b>${l.name}</b><small>${l.sub}</small><p>${ex}</p></div>`;
+      }).join('') + '</div>';
+    }
+    if (f.steps) b += `<ol class="steps">${f.steps.map(s => `<li><span class="own">${s[0]}</span><span class="act">${s[1]}</span></li>`).join('')}</ol>`;
+    const rules = items(f.rules);
+    if (rules.length) b += `<div class="rules"><h4>Rules</h4><ul>${rules.map(r => `<li>${r}</li>`).join('')}</ul></div>`;
+    document.getElementById('flowbody').innerHTML = b;
+  }
+
+  function renderMeasures() {
+    document.querySelector('#kpiTable tbody').innerHTML = VISIBLE_SEATS.filter(s => KPI[s.id]).map(s => `<tr><td><button class="wn" type="button" data-seat="${s.id}">${s.role}</button></td><td>${houseName(s.house)}</td><td><ul class="kpi-list">${KPI[s.id].map(k => `<li>${k}</li>`).join('')}</ul></td></tr>`).join('');
+    document.querySelector('#conflictTable tbody').innerHTML = CONFLICTS.map(c => `<tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td></tr>`).join('');
+  }
+  function renderBottlenecks() {
+    const el = document.getElementById('bottlenecks'); if (!el) return;
+    el.innerHTML = BOTTLENECKS.map(b => `<div class="card"><b>${b[0]}</b><p>${b[1]}</p><p><em>What to do:</em> ${b[2]}</p><p><em>Owner:</em> ${b[3]}</p></div>`).join('');
+    document.querySelector('#alternatives tbody').innerHTML = ALTERNATIVES.map(a => `<tr><td><b>${a[0]}</b></td><td>${a[1]}</td><td>${a[2]}</td></tr>`).join('');
+  }
+
+  // ---------- sandbox: a private copy of the chart, separate from everything else ----------
+  const SB_KEY = 'move-structure-sandbox';
+  let sb = null, sbPicked = null;
+  function sbDefault() { return VISIBLE_SEATS.map(s => ({ id: s.id, role: s.role, holder: holderOf(s), house: s.house, layer: s.layer, draft: false })); }
+  function sbLoad() { try { const v = JSON.parse(localStorage.getItem(SB_KEY) || 'null'); if (Array.isArray(v) && v.length) return v; } catch (e) {} return sbDefault(); }
+  function sbSave() { try { localStorage.setItem(SB_KEY, JSON.stringify(sb)); } catch (e) {} }
+  function sbCard(c) {
+    return `<button class="seat ${c.draft ? 'draft' : ''} ${sbPicked === c.id ? 'picked' : ''}" draggable="true" data-sbid="${c.id}" type="button"><span class="r">${c.role}</span><span class="h">${c.holder || ''}</span><span class="m">${c.draft ? '<span class="chip new">Draft</span>' : ''}</span></button>`;
+  }
+  function renderSandbox() {
+    const grid = document.getElementById('sbGrid'); if (!grid) return;
+    if (!sb) sb = sbLoad();
+    grid.style.setProperty('--cols', HOUSES.length);
+    let html = '<div class="corner"></div>';
+    HOUSES.forEach(h => { html += `<div class="hh">${h.name}<small>${h.sub}</small></div>`; });
+    LAYERS.forEach(l => {
+      html += `<div class="lh"><b>${l.name}</b><small>${l.sub}</small></div>`;
+      HOUSES.forEach(h => {
+        const cards = sb.filter(c => c.house === h.id && c.layer === l.id);
+        html += `<div class="cell ${cards.length ? '' : 'empty'} ${sbPicked ? 'target' : ''}" data-house="${h.id}" data-layer="${l.id}">${cards.map(sbCard).join('')}</div>`;
+      });
+    });
+    grid.innerHTML = html;
+    const ed = document.getElementById('sbEdit');
+    const pc = sb.find(c => c.id === sbPicked);
+    ed.hidden = !pc;
+    if (pc) { document.getElementById('sbPickedName').textContent = pc.role; document.getElementById('sbEditRole').value = pc.role; document.getElementById('sbEditHolder').value = pc.holder || ''; }
+    document.getElementById('sbSummary').textContent = sbSummaryLines().join(' · ') || 'Same as the target. Drag a seat or add a draft role to start.';
+  }
+  function sbSummaryLines() {
+    const base = Object.fromEntries(sbDefault().map(c => [c.id, c]));
+    const lines = [];
+    sb.forEach(c => {
+      const b = base[c.id];
+      if (!b) { lines.push(`Added: ${c.role}${c.holder ? ' (' + c.holder + ')' : ''} in ${houseName(c.house)}, ${layerName(c.layer)}`); return; }
+      const parts = [];
+      if (b.house !== c.house || b.layer !== c.layer) parts.push(`moved to ${houseName(c.house)}, ${layerName(c.layer)} (from ${houseName(b.house)}, ${layerName(b.layer)})`);
+      if (b.role !== c.role) parts.push(`renamed from ${b.role}`);
+      if ((b.holder || '') !== (c.holder || '')) parts.push(`holder now ${c.holder || 'blank'}`);
+      if (parts.length) lines.push(`${c.role}: ${parts.join('; ')}`);
+    });
+    Object.values(base).forEach(b => { if (!sb.find(c => c.id === b.id)) lines.push(`Removed: ${b.role}`); });
+    return lines;
+  }
+  function sbMove(id, house, layer) { const c = sb.find(x => x.id === id); if (!c) return; c.house = house; c.layer = layer; sbPicked = null; sbSave(); renderSandbox(); }
+  function wireSandbox() {
+    const grid = document.getElementById('sbGrid'); if (!grid) return;
+    HOUSES.forEach(h => document.getElementById('sbHouse').insertAdjacentHTML('beforeend', `<option value="${h.id}">${h.name}</option>`));
+    LAYERS.forEach(l => document.getElementById('sbLayer').insertAdjacentHTML('beforeend', `<option value="${l.id}">${l.name}</option>`));
+    grid.addEventListener('dragstart', e => { const c = e.target.closest('.seat'); if (!c) return; e.dataTransfer.setData('text/plain', c.dataset.sbid); e.dataTransfer.effectAllowed = 'move'; });
+    grid.addEventListener('dragover', e => { const cell = e.target.closest('.cell'); if (!cell) return; e.preventDefault(); cell.classList.add('over'); });
+    grid.addEventListener('dragleave', e => { const cell = e.target.closest('.cell'); if (cell) cell.classList.remove('over'); });
+    grid.addEventListener('drop', e => { const cell = e.target.closest('.cell'); if (!cell) return; e.preventDefault(); sbMove(e.dataTransfer.getData('text/plain'), cell.dataset.house, cell.dataset.layer); });
+    grid.addEventListener('click', e => {
+      const card = e.target.closest('.seat');
+      if (card) { sbPicked = sbPicked === card.dataset.sbid ? null : card.dataset.sbid; renderSandbox(); return; }
+      const cell = e.target.closest('.cell');
+      if (cell && sbPicked) sbMove(sbPicked, cell.dataset.house, cell.dataset.layer);
+    });
+    document.getElementById('sbForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const role = document.getElementById('sbRole').value.trim(); if (!role) return;
+      sb.push({ id: 'draft-' + Date.now(), role, holder: document.getElementById('sbHolder').value.trim(), house: document.getElementById('sbHouse').value, layer: document.getElementById('sbLayer').value, draft: true });
+      document.getElementById('sbRole').value = ''; document.getElementById('sbHolder').value = '';
+      sbSave(); renderSandbox();
+    });
+    document.getElementById('sbSave').addEventListener('click', () => { const c = sb.find(x => x.id === sbPicked); if (!c) return; c.role = document.getElementById('sbEditRole').value.trim() || c.role; c.holder = document.getElementById('sbEditHolder').value.trim(); sbSave(); renderSandbox(); });
+    document.getElementById('sbRemove').addEventListener('click', () => { sb = sb.filter(x => x.id !== sbPicked); sbPicked = null; sbSave(); renderSandbox(); });
+    document.getElementById('sbUnpick').addEventListener('click', () => { sbPicked = null; renderSandbox(); });
+    document.getElementById('sbReset').addEventListener('click', () => { sb = sbDefault(); sbPicked = null; sbSave(); renderSandbox(); toast('Sandbox reset to the target'); });
+    document.getElementById('sbCopy').addEventListener('click', () => {
+      const lines = sbSummaryLines();
+      const text = 'Sandbox changes to the MOVE structure:\n' + (lines.length ? lines.map(l => '- ' + l).join('\n') : '- none');
+      const done = () => toast('Copied. Paste it into a message.');
+      const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e2) { toast('Select the summary line and copy it by hand'); } ta.remove(); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
+  }
+
+  function renderGlossary() {
+    document.getElementById('glossary').innerHTML = GLOSSARY.map(g => `<div><b>${g[0]}</b>${g[1]}</div>`).join('');
+  }
+  function renderHiring() {
+    if (!document.getElementById('hire')) return;
+    document.getElementById('hire').innerHTML = HIRING.map((h, i) => `<li><span class="n">${i + 1}</span><div><div class="t">${h[0]}<small>${h[1]}</small></div><p>${h[2]}</p><div class="trig"><b>Trigger:</b> ${h[3]}</div></div></li>`).join('');
+  }
+  function renderRulings() {
+    if (!document.querySelector('#rulings tbody')) return;
+    document.querySelector('#rulings tbody').innerHTML = RULINGS.map((r, i) => `<tr><td>${i + 1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+  }
+
+  // ---------- wiring ----------
+  const VIEWS = TEAM ? ['structure', 'orgchart', 'flows', 'measures', 'glossary'] : ['structure', 'orgchart', 'flows', 'measures', 'glossary', 'hiring', 'rulings', 'bottlenecks', 'sandbox'];
+  function showView(v) {
+    if (!VIEWS.includes(v)) v = 'structure';
+    document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.view === v)));
+    document.querySelectorAll('.view').forEach(s => s.classList.toggle('active', s.id === 'view-' + v));
+    document.getElementById('modeSeg').style.visibility = (v === 'structure' || v === 'orgchart') ? 'visible' : 'hidden';
+    if (v === 'orgchart') renderOrgChart();
+    renderChanges();
+  }
+  if (TEAM) {
+    document.querySelectorAll('[data-internal]').forEach(el => { el.hidden = true; });
+    document.getElementById('pageTitle').textContent = 'MOVE Structure Guide';
+    document.getElementById('pageSub').textContent = 'How MOVE is organised, who owns what, and how the houses work together. Updated 29 October 2026. Click any seat.';
+  } else {
+    document.getElementById('pageSub').textContent = 'Where the organisation is heading over the next year. Working draft, 29 October 2026. Click any seat.';
+  }
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => showView(t.dataset.view)));
+  document.getElementById('modeToday').addEventListener('click', () => { mode = 'today'; setMode(); });
+  document.getElementById('modeTarget').addEventListener('click', () => { mode = 'target'; setMode(); });
+  function setMode() {
+    document.getElementById('modeToday').setAttribute('aria-pressed', String(mode === 'today'));
+    document.getElementById('modeTarget').setAttribute('aria-pressed', String(mode === 'target'));
+    if (selected) { if (placement(byId[selected])) openSeat(selected); else closeDrawer(); } else renderGrid();
+    if (document.getElementById('view-orgchart').classList.contains('active')) renderOrgChart();
+    document.getElementById('ocLede').textContent = mode === 'today'
+      ? 'The seats as they report today, drawn as a tree. Each house stacks downward under its head; a line from the left edge of a box leads to the seats that report to it. Click any box for its card.'
+      : 'The target structure drawn as a tree with reporting lines. Each house stacks downward under its head; a line from the left edge of a box leads to the seats that report to it. Click any box for its card.';
+    renderChanges();
+  }
+  document.addEventListener('click', e => {
+    if (e.target.closest('#view-sandbox') || e.target.closest('#view-orgchart')) return;
+    const sbtn = e.target.closest('.seat, .wn'); if (sbtn) { if (!document.getElementById('view-structure').classList.contains('active')) { showView('structure'); window.scrollTo({ top: 0 }); } openSeat(sbtn.dataset.seat); return; }
+    const fl = e.target.closest('[data-flow]'); if (fl) { flow = fl.dataset.flow; renderFlows(); if (fl.classList.contains('flowlink')) { closeDrawer(); showView('flows'); window.scrollTo({ top: 0 }); } return; }
+  });
+  document.getElementById('dClose').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && selected) closeDrawer(); });
+  document.getElementById('resetChanges').addEventListener('click', () => { overrides = {}; saveOverrides(); renderChanges(); if (selected) openSeat(selected); else renderGrid(); toast('What-if changes cleared'); });
+  document.getElementById('copyChanges').addEventListener('click', () => {
+    const text = 'What-if changes to the MOVE target structure:\n' + changeLines().map(l => '- ' + l).join('\n');
+    const done = () => toast('Copied. Paste it back to Claude.');
+    const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e2) { toast('Select the list and copy it by hand'); } ta.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  });
+
+  renderGrid(); renderFlows(); renderMeasures(); renderGlossary(); renderHiring(); renderRulings(); renderBottlenecks(); wireSandbox(); renderSandbox(); renderChanges();
+  const h = (location.hash || '').replace('#', '');
+  showView(VIEWS.includes(h) ? h : 'structure');
+})();
+</script>
+
+</body>
+</html>
