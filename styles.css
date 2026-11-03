@@ -393,3 +393,6 @@ li.collapsed > .node::after { content: attr(data-count); position: absolute; lef
   .canvas { overflow: visible; height: auto !important; }
   .tree-root { transform: none !important; }
 }
+
+.hero .lede a { color: inherit; font-weight: 600; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.hero .lede a:hover { color: var(--accent); }
