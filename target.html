@@ -226,7 +226,11 @@
   .ob .h.open { color: var(--muted); font-style: italic; }
   .ob .hat { font-size: 10px; color: var(--muted); border-top: 1px dashed var(--line); margin-top: 3px; padding-top: 2px; }
   .ob .m { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
+  .ob .eyebrow { font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin-bottom: 2px; }
   .ob.head { background: var(--green-tint); border-color: var(--green); }
+  .ob.group { background: var(--bg-2); border-style: solid; cursor: default; }
+  .ob.group .eyebrow { color: var(--muted); }
+  .ob.group:hover { box-shadow: none; }
   .ob.exec { background: var(--green); border-color: var(--green); color: #fff; }
   .ob.exec .h { color: #E8F1F0; }
   .ob.exec .chip.lvl { background: rgba(255,255,255,.18); color: #fff; border-color: transparent; }
@@ -1781,12 +1785,13 @@
     Object.values(byIdP).forEach(n => { if (n.parent && byIdP[n.parent]) byIdP[n.parent].kids.push(n.s.id); });
     // seats with their own reports go last in a stack, so a nested group never sits between its siblings
     Object.values(byIdP).forEach(n => { n.kids.sort((a, b) => (byIdP[a].kids.length ? 1 : 0) - (byIdP[b].kids.length ? 1 : 0)); });
-    const box = (id, depth, extra) => {
+    const box = (id, depth, extra, eyebrow) => {
       const n = byIdP[id]; const s = n.s; const p = n.p;
       const h = holderOf(s); const openHolder = /open seat|to be confirmed/i.test(h);
       const cls = ['ob', extra || '', depth ? 'd' + Math.min(depth, 4) : '', p.whatif ? 'moved' : p.status].join(' ');
       const hat = OC_HATS[id] ? `<span class="hat">${OC_HATS[id]}</span>` : '';
-      return `<button class="${cls}" data-oc="${id}" data-parent="${n.parent || ''}" type="button"><span class="r">${s.role}</span><span class="h ${openHolder ? 'open' : ''}">${h}</span>${hat}<span class="m">${statusChip(p, s)}</span></button>`;
+      const eb = eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : '';
+      return `<button class="${cls}" data-oc="${id}" data-parent="${n.parent || ''}" type="button">${eb}<span class="r">${s.role}</span><span class="h ${openHolder ? 'open' : ''}">${h}</span>${hat}<span class="m">${statusChip(p, s)}</span></button>`;
     };
     const stack = (id, depth) => byIdP[id].kids.map(k => box(k, depth) + stack(k, depth + 1)).join('');
     const cooKids = (byIdP.coo ? byIdP.coo.kids : []).slice();
@@ -1797,8 +1802,8 @@
     html += `<div class="ocrow">${box('ceo', 0, 'exec')}${(byIdP.ceo.kids.filter(k => k !== 'coo')).map(k => box(k, 0)).join('')}</div>`;
     html += `<div class="ocrow">${box('coo', 0, 'exec')}</div>`;
     html += '<div class="occols">';
-    heads.forEach(k => { const hs = HOUSES.find(h => h.id === byIdP[k].p.house); html += `<div class="occol"><div class="ochouse">${hs ? hs.name : ''}</div>${box(k, 0, 'head')}${stack(k, 1)}</div>`; });
-    if (directs.length) html += `<div class="occol"><div class="ochouse plain">Reports to the COO</div>${directs.map(k => box(k, 0) + stack(k, 1)).join('')}</div>`;
+    heads.forEach(k => { const hs = HOUSES.find(h => h.id === byIdP[k].p.house); html += `<div class="occol">${box(k, 0, 'head', hs ? hs.name : '')}${stack(k, 1)}</div>`; });
+    if (directs.length) html += `<div class="occol"><div class="ob group" data-oc="coo-directs"><span class="eyebrow">Reports to the COO</span><span class="r">Direct seats</span><span class="h">Serve every house; no single house owns them</span></div>${directs.map(k => box(k, 1) + stack(k, 2)).join('')}</div>`;
     html += '</div></div><svg class="oclines" id="ocLines"></svg>';
     oc.innerHTML = html;
     document.getElementById('ocScale').style.transform = `scale(${ocZoom})`;
@@ -1816,7 +1821,7 @@
     const path = (s, cls) => { d += `<path d="${s}" class="${cls || ''}"></path>`; };
     // CEO to COO, and CEO to any other child in the top row
     if (byId.ceo && byId.coo) { const a = rect(byId.ceo), b = rect(byId.coo); path(`M${a.cx} ${a.bottom} V${b.top}`); }
-    boxes.filter(b => b.dataset.parent === 'ceo' && b.dataset.oc !== 'coo').forEach(b => { const a = rect(byId.ceo), c = rect(b); const my = a.bottom + 10; path(`M${a.cx} ${a.bottom} V${my} H${c.cx} V${c.top}`); });
+    boxes.filter(b => b.dataset.parent === 'ceo' && b.dataset.oc !== 'coo').forEach(b => { const a = rect(byId.ceo), c = rect(b); if (c.top < a.bottom) { const y = (a.top + a.bottom) / 2; path(`M${a.right} ${y} H${c.left}`); } else { const my = a.bottom + 10; path(`M${a.cx} ${a.bottom} V${my} H${c.cx} V${c.top}`); } });
     // COO to the column tops: a rail
     const tops = [...oc.querySelectorAll('.occol')].map(col => col.querySelector('.ob')).filter(Boolean);
     if (byId.coo && tops.length) {
@@ -1826,8 +1831,10 @@
     }
     // inside a column: elbow from the parent's left spine to each child
     boxes.forEach(b => {
-      const pid = b.dataset.parent; if (!pid || pid === 'coo' || pid === 'ceo') return;
-      const pb = byId[pid]; if (!pb || pb.closest('.occol') !== b.closest('.occol')) return;
+      const pid = b.dataset.parent; if (!pid || pid === 'ceo') return;
+      let pb = byId[pid];
+      if (pid === 'coo') { pb = b.closest('.occol') ? b.closest('.occol').querySelector('.ob.group') : null; if (!pb) return; }
+      if (!pb || pb.closest('.occol') !== b.closest('.occol')) return;
       const a = rect(pb), c = rect(b); const x = a.left + 8; const my = c.top + 18;
       path(`M${x} ${a.bottom} V${my} H${c.left}`, b.classList.contains('trigger') ? 'dashed' : '');
     });
@@ -1836,7 +1843,7 @@
   window.addEventListener('resize', () => { if (document.getElementById('view-orgchart').classList.contains('active')) drawOrgLines(); });
   document.addEventListener('click', e => {
     const zb = e.target.closest('[data-zoom]'); if (zb) { ocZoom = parseFloat(zb.dataset.zoom); renderOrgChart(); return; }
-    const ob = e.target.closest('.ob'); if (ob) { openSeat(ob.dataset.oc); setTimeout(drawOrgLines, 0); }
+    const ob = e.target.closest('.ob'); if (ob && !ob.classList.contains('group')) { openSeat(ob.dataset.oc); setTimeout(drawOrgLines, 0); }
   });
 
   // ---------- flows ----------
