@@ -485,7 +485,8 @@
     "reportsTo": "COO",
     "status": "new",
     "today": null,
-    "about": "A six-month assignment, reviewed at month three, holding at most two projects at a time. The analyst maps how a piece of work actually runs, measures it, names the gap, proposes the owner and the fix, writes it down, and checks later that it held. The analyst proposes; the head of house decides; the COO settles anything that crosses houses.",
+    "career": "Fee reviewed each anniversary with a fixed yearly increment and no per-branch increment, because the load is set by the project count, not the branch count. Up: the first operations seat under the COO (Head of Operations or Chief of Staff) when the COO's direct seats and the cross-house work justify one. Across: Opening Project Lead in Expansion. For Felicia, the Strategy Office if the CEO brings it back.",
+    "about": "A two-year contract for service with a four-month probation, holding at most two projects at a time. The analyst maps how a piece of work actually runs, measures it, names the gap, proposes the owner and the fix, writes it down, and checks later that it held. The analyst proposes; the head of house decides; the COO settles anything that crosses houses.",
     "duties": [
      "Project 1: the opening requisition and launch calendar as a working tool, with every stage gate and its owner, so each new location runs off the same calendar.",
      "Project 2: the enquiry routing table, the monthly enquiry measures and the test run after each Captain change, held until the Enquiry and Events Operations Lead is in seat and handed over on that person's first day."
@@ -564,7 +565,7 @@
     "today": null,
     "about": "One operations seat for the two things every house touches but nobody ran: enquiries and events. It owns the system and the logistics; the content stays with whoever the enquiry or the event belongs to. It coordinates with every enquiry owner and every requesting house, routes and directs, and is measured on its own numbers: response rule met, routing accuracy, events delivered to brief. It does not answer enquiries, and it does not run an event's programme. A direct seat under the COO, because it serves every house and no single house owns it.",
     "scale": "The seat plans; it does not host. Every event has a named on-the-day lead from the country team (the Country Manager's team, or Talent Acquisition's country person for a career day), who runs the run-sheet on site. The seat prepares each event remotely from the playbook, holds a checklist call with each on-the-day lead the day before, is on call during the event, and collects the report after. Three seminars in three countries on one weekend are three run-sheets and three on-the-day leads, not three flights. The seat travels only for a first-of-its-kind event or a format it is still writing the playbook for. That is why the Country Manager directs country people on local matters: the country team has to own the day.",
-    "career": "From here the seat can grow three ways. Up: Head of Client Experience, leading a response team and an events team if the volume ever justifies them (a house when it reaches three permanent people with a budget line). Across: Country Manager, because the seat learns every enquiry type, every branch and every client journey. Sideways: the coordination lane, Opening Project Lead or Business Analyst. On the Growth Map the seat is L3; a team lead is L4.",
+    "career": "Starts as a second role for a team member already at MOVE, on a one-year trial: the enquiry side on a fixed fee, each event coordinated as a project, gates at day 30, day 90, month six and month twelve. From there the seat can grow three ways. Up: Head of Client Experience, leading a response team and an events team, if a central response desk is created (a live possibility, not yet decided) and the volume justifies the teams (a house when it reaches three permanent people with a budget line). Split: enquiry operations and events become two seats when events run weekly in more than one country. Across: Business Analyst or Opening Project Lead.",
     "duties": [
      "Enquiries: the routing table (which type of enquiry goes to which owner), the response rule across every inbox and the check that it is met, the automation and Captain content, the change log, and the monthly measures.",
      "Events: the one calendar for the company; the playbook for setting an event up (venue, seating, AV, materials, run-sheet, roles on the day); registration through the standard form with the consent gate; the enquiry side of every event (registration link, routing and auto-replies in Chatwoot); coordination with the country team on the day; attendance and outcome reported afterwards.",
@@ -965,6 +966,7 @@
      "Covers Singapore employment set-up until a Singapore seat exists; Singapore payroll runs through Finance or its local provider.",
      "Line manager of People Operations."
     ],
+    "career": "Within the term the seat grows a team: the country People Operations seats report to it, so by the end of 2027 it runs people operations in three countries. Up: Head of People & Culture by succession, or Head of People Operations if the function splits into development and operations once the country seats exist. Across: a Country Manager seat for a new country.",
     "flows": [
      "hr",
      "talent"
@@ -1776,7 +1778,7 @@
     if (key in REPORTS_TO_ID) return REPORTS_TO_ID[key];
     const byRole = SEATS.find(s => s.role === key); return byRole ? byRole.id : 'coo';
   }
-  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'five openings planned in 2027', agencies: 'bought, not hired', fa: 'stays central; country books via a Finance Executive', proc: 'buys for all three countries', hoe: 'CJ continues as a company director', ir: 'second hat for Danish from Q2 or Q3 2027' };
+  const OC_HATS = { et: 'branch matters: the Branch Manager', bm: 'one per branch, under their Country Manager; shown under Malaysia', hoe_sg: 'line to be confirmed', hoe_my: 'second hat beside the Council', cm_sg: 'four to six openings planned in 2027', agencies: 'bought, not hired', fa: 'stays central; country books via a Finance Executive', proc: 'buys for all three countries', hoe: 'CJ continues as a company director', ir: 'second hat for Danish from Q2 or Q3 2027' };
   let ocZoom = 1;
   function renderOrgChart() {
     const oc = document.getElementById('oc'); if (!oc) return;
